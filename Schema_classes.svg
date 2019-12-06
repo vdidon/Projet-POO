@@ -304,10 +304,10 @@
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0.93854903116578):1"/>
-				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Robot_ancien)"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(RobotAncien)"/>
 			</v:userDefs>
 			<title>Classe.33</title>
-			<desc>Robot_ancien</desc>
+			<desc>RobotAncien</desc>
 			<g id="shape34-27" v:mID="34" v:groupContext="shape">
 				<title>Feuille.34</title>
 				<v:userDefs>
@@ -331,7 +331,7 @@
 					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
 					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
-					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Robot_ancien)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(RobotAncien)"/>
 				</v:userDefs>
 				<path d="M0 595.28 L85.04 595.28 L85.04 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
 			</g>
@@ -350,7 +350,7 @@
 			<g id="shape33-32" v:mID="33" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
 				<v:textRect cx="42.5197" cy="547.063" width="85.04" height="31.4037"/>
-				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>Robot_ancien</text>			</g>
+				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>RobotAncien</text>			</g>
 		</g>
 		<g id="group41-34" transform="translate(283.465,-91.9906)" v:mID="41" v:groupContext="group">
 			<v:userDefs>
@@ -378,10 +378,10 @@
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0.93854903116578):1"/>
-				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Robot_nouveau)"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(RobotNouveau)"/>
 			</v:userDefs>
 			<title>Classe.41</title>
-			<desc>Robot_nouveau</desc>
+			<desc>RobotNouveau</desc>
 			<g id="shape42-35" v:mID="42" v:groupContext="shape">
 				<title>Feuille.42</title>
 				<v:userDefs>
@@ -405,7 +405,7 @@
 					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
 					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
-					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Robot_nouveau)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(RobotNouveau)"/>
 				</v:userDefs>
 				<path d="M0 595.28 L93.54 595.28 L93.54 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
 			</g>
@@ -424,7 +424,7 @@
 			<g id="shape41-40" v:mID="41" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
 				<v:textRect cx="46.7717" cy="547.063" width="93.55" height="31.4037"/>
-				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>Robot_nouveau</text>			</g>
+				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>RobotNouveau</text>			</g>
 		</g>
 		<g id="group49-42" transform="translate(163.365,-92.5443)" v:mID="49" v:groupContext="group">
 			<v:userDefs>
@@ -452,10 +452,10 @@
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0.93854903116578):1"/>
-				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Robot_perso)"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(RobotPerso)"/>
 			</v:userDefs>
 			<title>Classe.49</title>
-			<desc>Robot_perso</desc>
+			<desc>RobotPerso</desc>
 			<g id="shape50-43" v:mID="50" v:groupContext="shape">
 				<title>Feuille.50</title>
 				<v:userDefs>
@@ -479,7 +479,7 @@
 					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
 					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
-					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Robot_perso)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(RobotPerso)"/>
 				</v:userDefs>
 				<path d="M0 595.28 L85.04 595.28 L85.04 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
 			</g>
@@ -498,7 +498,7 @@
 			<g id="shape49-48" v:mID="49" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
 				<v:textRect cx="42.5197" cy="547.063" width="85.04" height="31.4037"/>
-				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>Robot_perso</text>			</g>
+				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>RobotPerso</text>			</g>
 		</g>
 		<g id="group65-50" transform="translate(566.929,-230.437)" v:mID="65" v:groupContext="group">
 			<v:userDefs>
@@ -604,10 +604,10 @@
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0.93854903116578):1"/>
-				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Joueur_base)"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(JoueurBase)"/>
 			</v:userDefs>
 			<title>Classe.73</title>
-			<desc>Joueur_base</desc>
+			<desc>JoueurBase</desc>
 			<g id="shape74-60" v:mID="74" v:groupContext="shape">
 				<title>Feuille.74</title>
 				<v:userDefs>
@@ -631,7 +631,7 @@
 					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
 					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
-					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Joueur_base)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(JoueurBase)"/>
 				</v:userDefs>
 				<path d="M0 595.28 L85.04 595.28 L85.04 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
 			</g>
@@ -650,7 +650,7 @@
 			<g id="shape73-65" v:mID="73" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
 				<v:textRect cx="42.5197" cy="547.063" width="85.04" height="31.4037"/>
-				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>Joueur_base</text>			</g>
+				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>JoueurBase</text>			</g>
 		</g>
 		<g id="group81-67" transform="translate(640.63,-95.6016)" v:mID="81" v:groupContext="group">
 			<v:userDefs>
@@ -678,10 +678,10 @@
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0.93854903116578):1"/>
-				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Joueur_expert)"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(JoueurExpert)"/>
 			</v:userDefs>
 			<title>Classe.81</title>
-			<desc>Joueur_expert</desc>
+			<desc>JoueurExpert</desc>
 			<g id="shape82-68" v:mID="82" v:groupContext="shape">
 				<title>Feuille.82</title>
 				<v:userDefs>
@@ -705,7 +705,7 @@
 					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
 					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
-					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Joueur_expert)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(JoueurExpert)"/>
 				</v:userDefs>
 				<path d="M0 595.28 L85.04 595.28 L85.04 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
 			</g>
@@ -724,7 +724,7 @@
 			<g id="shape81-73" v:mID="81" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
 				<v:textRect cx="42.5197" cy="547.063" width="85.04" height="31.4037"/>
-				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>Joueur_expert</text>			</g>
+				<text x="4" y="550.66" class="st3" v:langID="1036"><v:paragraph/><v:tabList/>JoueurExpert</text>			</g>
 		</g>
 		<g id="group89-75" transform="translate(96.8255,-155.906)" v:mID="89" v:groupContext="group" v:layerMember="0">
 			<v:userDefs>
