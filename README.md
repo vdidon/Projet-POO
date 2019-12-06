@@ -1,5 +1,5 @@
 # Projet-POO
-![Schéma classes](Schema_classes.png)
+![Schéma classes](Schema_classes.svg)
 
 **Mémo GitHub / Git**
 
