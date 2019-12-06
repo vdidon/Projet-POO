@@ -33,21 +33,23 @@
 *.out
 *.app
 
-#Clion
+# Clion
 .idea
 cmake-build-debug
+#CMakeLists.txt
 
-#Google Drive
+# Google Drive
 desktop.ini
 
-#Visual Studio
+# Visual Studio
 .vs
-*.vcxproj.user
-*.vcxproj.filters
-*.json
-*.sln
-*.vcxproj
-*.xml
+#*.vcxproj.user
+#*.vcxproj.filters
+#*.json
+#*.sln
+#*.vcxproj
+#*.xml
 
-#CodeBlocks
+# CodeBlocks
 *.layout
+#*.cbp
