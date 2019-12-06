@@ -1,3 +1,5 @@
+## Liste des fichiers à ignorer
+
 # Prerequisites
 *.d
 
@@ -30,3 +32,22 @@
 *.exe
 *.out
 *.app
+
+#Clion
+.idea
+cmake-build-debug
+
+#Google Drive
+desktop.ini
+
+#Visual Studio
+.vs
+*.vcxproj.user
+*.vcxproj.filters
+*.json
+*.sln
+*.vcxproj
+*.xml
+
+#CodeBlocks
+*.layout
