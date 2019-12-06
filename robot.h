@@ -9,7 +9,7 @@
 
 // Avoir une class robot customisable à la fin si on a le temps
 
-class robot : public object
+class robot : public objet
 {
     public :
         robot() = default ;
