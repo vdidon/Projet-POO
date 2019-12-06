@@ -27,18 +27,6 @@ Cela a pour effet de créer un dossier [Projet-POO-git] dans lequel vous pourrez
 
 Permet de connaître l'état actuel de votre dépôt local : liste des fichiers sous contrôle contenant des modifications, liste des fichiers présents et non contrôlés, etc.
 
-`git remote -v`
-
-Permet de voir la liste des dépôts distants connus (origin est le nom du dépôt distant depuis lequel le dépôt local a été cloné)
-
-`git diff [file]`
-
-Permet de voir les modifications apportées à un fichier et non encore commitées
-
-`git checkout -- [file]`
-
-Permet d'annuler les modifications apportées à un fichier et de le remettre dans l'état où il était précédemment
-
 `git add [file]`
 
 Permet d'ajouter un fichier non contrôlé au dépôt lors du prochain commit
@@ -57,7 +45,11 @@ Permet d'ajouter un commit au dépôt (sous réserve d'avoir fait au moins un ad
 
 `git commit --all -m "..."`
 
-Permet d'ajouter un commit au dépôt sans faire de add avec tout les fichiers modifié (attention ne marche pas pour la création de nouveaux fichiers)
+Permet d'ajouter un commit au dépôt **sans faire de add** avec tout les fichiers modifié (attention ne marche pas pour la création de nouveaux fichiers)
+
+`git commit --amend -m "..."`
+
+Si le commit n'a pas été envoyé sur un dépôt distant, cette commande permet de rajouter au dernier commit des modification, c'est pratique si on a oublié un truc ;)
 
 `git pull`
 
