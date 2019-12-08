@@ -21,6 +21,10 @@ Afin de vous créer un clone de travail local, tapez :
 
 Cela a pour effet de créer un dossier [Projet-POO-git] dans lequel vous pourrez travailler.
 
+**Info utile**
+
+Le fichier *.gitignore* liste tout les fichiers qui ne seront pas synchronisé avec le serveur, c'est pratique pour garder des fichiers perso ou certain fichiers généré par les IDE
+
 **Commandes git courantes**
 
 `git status`
