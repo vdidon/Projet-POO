@@ -4,6 +4,12 @@
 #include "robot.h"
 
 class robotNouveau : public robot {
+public:
+	robotNouveau() = default;
+
+	virtual bool position(int x, int y) const final;
+
+	virtual char typeObjet() const final;
 
 };
 
