@@ -1,6 +1,7 @@
 #include "objet.h"
 
-objet::~objet()
-{}
+char objet::typeObjet() const {
+	return TYPES::OBJET;
+}
 
 // Rien d'autre à rajouter
