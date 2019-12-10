@@ -1,4 +1,5 @@
 #include <iostream>
+#include "jeu.h"
 
 using namespace std;
 
