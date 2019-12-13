@@ -6,8 +6,9 @@
 class debris : public objet
 {
     public :
-        debris() = default ;
-        virtual bool deplace(int x, int y) override ;
+        debris() = default ; //Constructeur par défaut
+        virtual bool PeutAllerEn(int x, int y) override ; //Méthode pour savoir si l'objet peut être déplacer (virtuelle)
+        virtual char typeObjet() const override; //Méthode pour connaître le type de l'objet (virtuelle)
 };
 
 #endif // DEBRIS_H

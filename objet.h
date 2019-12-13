@@ -3,13 +3,13 @@
 
 class objet {
 public:
-	virtual ~objet() = default;
+	virtual ~objet() = default; //Destructeur (virtuelle)
 
-	virtual bool deplace(int x, int y) const = 0;
+	virtual bool PeutAllerEn(int x, int y) const = 0; //Méthode pour savoir si l'objet peut être déplacer (virtuelle)
 
-	virtual char typeObjet() const;
+	virtual char typeObjet() const; //Méthode pour connaître le type de l'objet (virtuelle)
 
-	class TYPES {
+	class TYPES { //Class permettant de donner un type aux objets
 	public:
 		static constexpr char OBJET = 'O';
 		static constexpr char ROBOT = 'R';
@@ -19,6 +19,8 @@ public:
 		static constexpr char JOUEUR = 'J';
 		static constexpr char JOUEUR_BASE = 'B';
 		static constexpr char JOUEUR_EXPERT = 'E';
+		static constexpr char MUR = 'M';
+		static constexpr char DEBRIS = 'D';
 	};
 };
 
