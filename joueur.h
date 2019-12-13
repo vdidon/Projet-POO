@@ -20,7 +20,12 @@ class joueur //: public objet cause des erreurs
         virtual bool estVivant()const=0;
         virtual localisation position()const =0 ;
 
-        
+        static bool evalCase(const Terrain& gr,int lig,int col);// methode de objet ou terrain
+
+        static char testChoixUtilisateur(char choix, const string &phrase);
+        static void interactionJoueurExpert(int &x1, int &x2);
+        static void interactionJoueurBase(int &x1, int &x2);
+        static void echecMauvaisPas();
 };
 
 #endif // JOUEUR_H
