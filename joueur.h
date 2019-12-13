@@ -20,7 +20,7 @@ class joueur //: public objet cause des erreurs
         virtual bool estVivant()const=0;
         virtual localisation position()const =0 ;
 
-
+        
 };
 
 #endif // JOUEUR_H
