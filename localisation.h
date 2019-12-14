@@ -14,6 +14,11 @@ public:
   @param y y-coordonnée
 */
   localisation(int x, int y);
+  
+  ///@return the x-coordonnée
+  int x()  const;
+///@return the y-coordonnée
+  int y()  const;
 
 private:
 
