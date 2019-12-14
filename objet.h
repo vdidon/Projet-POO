@@ -22,7 +22,7 @@ public:
 		static constexpr char JOUEUR_EXPERT = 'JE'; /** Changement de nom, j'ai mis JE à la place de E - pour moi, plus parlant */
 		static constexpr char MUR = 'M';
 		static constexpr char DEBRIS = 'D';
-		static constexpr char VIDE = ".";
+		static constexpr char VIDE = '.';
 	};
 };
 
