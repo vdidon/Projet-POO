@@ -6,7 +6,7 @@
 class joueurExpert : public joueur
 {
     public :
-        joueurExpert() = default ;
+        joueurExpert(const localisation &pos);
         virtual bool deplace(int x, int y) override ;
 };
 
