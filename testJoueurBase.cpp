@@ -4,7 +4,14 @@
 
 TEST_CASE("Test des opérations du joueur de base")
 {
-    
+    SUBCASE("Le joueur est bien mort")
+    {
+        localisation pos;
+        joueurBase j1Base {pos};
+        bool vivant = false;
+        j1Base.tuer();
+        REQUIRE_EQ(j1Base.estVivant(), vivant) ;
+    }
 }
 
 
