@@ -21,6 +21,7 @@ public:
 		static constexpr char JOUEUR_EXPERT = 'E';
 		static constexpr char MUR = 'M';
 		static constexpr char DEBRIS = 'D';
+		static constexpr char VIDE = ".";
 	};
 };
 
