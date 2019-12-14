@@ -57,7 +57,9 @@ TEST_CASE("Test des opérations du joueur de base")
 
         REQUIRE_EQ(j1Base.position().x(), resultatX1) ;
         REQUIRE_EQ(j1Base.position().y(), resultatY1) ;
-     }
+     
+	}
+	 
 }
 
 
