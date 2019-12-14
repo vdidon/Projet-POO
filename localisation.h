@@ -5,9 +5,11 @@
 
 class localisation {
 public:
-
+///Cionstructeur par défaut : point (0,0)
+  localisation();
 
 private:
+
 
 };
 #endif
