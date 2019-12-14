@@ -33,7 +33,7 @@ TEST_CASE("Test des opérations du joueur de base")
         {
             joueur::interactionJoueurBase(x1,y1);
 
-        //if(joueur::evalCase(const Terrain& gr,int lig,int col) //Teste si valeur pas en dehors du terrain
+        ///if(joueur::evalCase(const Terrain& gr,int lig,int col) //Teste si valeur pas en dehors du terrain
         //{
             resultatX1=positionX1+x1;
             resultatY1=positionY1+y1;
