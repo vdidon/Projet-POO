@@ -15,3 +15,8 @@ int localisation::y() const
 {
   return d_y;
 }
+
+void localisation::moveTo(double x, double y)
+{
+  d_x = x; d_y = y;
+}

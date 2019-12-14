@@ -19,6 +19,13 @@ public:
   int x()  const;
 ///@return the y-coordonnée
   int y()  const;
+  
+  /**
+  Change les coordonées
+  @param x the new x-coordonnée
+  @param y the new y-coordonnée
+*/
+void moveTo(double x, double y);
 
 private:
 
