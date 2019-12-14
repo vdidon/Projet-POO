@@ -12,6 +12,10 @@ class joueurExpert : public joueur
 		virtual void tuer() override ;
         virtual bool estVivant() const override;
         virtual localisation position() const override;
+		
+		private:
+        bool d_vivant;
+        localisation d_coordonnee;
 };
 
 #endif // JOUEUREXPERT_H
