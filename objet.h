@@ -3,7 +3,7 @@
 
 class objet {
 public:
-			// virtual objet(); CODEBLOCKS met une erreur : error: constructors cannot be declared 'virtual' [-fpermissive]|
+	objet() = default;
 	virtual ~objet() = default; //Destructeur (virtuelle)
 
 	virtual bool PeutAllerEn(int x, int y) const = 0; //Méthode pour savoir si l'objet peut être déplacer (virtuelle)
