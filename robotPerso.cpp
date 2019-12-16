@@ -9,9 +9,6 @@ char robotPerso::typeObjet() const {
 	return objet::TYPES::ROBOT_PERSO;
 }
 
-bool robotPerso::position(int x, int y) const {
-	return abs(x) <= d_vitesse && abs(y) <= d_vitesse && bonneDirection(x, y);
-}
 
 bool robotPerso::bonneDirection(int dx, int dy) const {
 	if (dx > 0) {
@@ -40,4 +37,8 @@ bool robotPerso::bonneDirection(int dx, int dy) const {
 }
 
 robotPerso::robotPerso(unsigned int vitesse, bool direction[8]) : d_vitesse{vitesse}, d_direction{direction} {}
+
+bool robotPerso::PeutAllerEn(int dx, int dy) const {
+	return abs(dx) <= d_vitesse && abs(dy) <= d_vitesse && bonneDirection(dx, dy);
+}
 

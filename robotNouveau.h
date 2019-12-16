@@ -5,7 +5,7 @@
 
 class robotNouveau : public robot {
 public:
-	virtual bool position(int x, int y) const final;
+	virtual bool PeutAllerEn(int dx, int dy) const final;
 
 	virtual char typeObjet() const final;
 

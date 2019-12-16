@@ -6,7 +6,7 @@ public:
 	objet() = default;
 	virtual ~objet() = default; //Destructeur (virtuelle)
 
-	virtual bool PeutAllerEn(int x, int y) const = 0; //Méthode pour savoir si l'objet peut être déplacer (virtuelle)
+	virtual bool PeutAllerEn(int dx, int dy) const = 0; //Méthode pour savoir si l'objet peut être déplacer (virtuelle)
 
 	virtual char typeObjet() const; //Méthode pour connaître le type de l'objet (virtuelle)
 

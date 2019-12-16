@@ -1,10 +1,10 @@
 #include "robotAncien.h"
 #include <cmath>
 
-bool robotAncien::position(int x, int y) const {
-	return !(x && y) && abs(x) <= 1 && abs(y) <= 1;
-}
-
 char robotAncien::typeObjet() const {
 	return objet::TYPES::ROBOT_ANCIEN;
+}
+
+bool robotAncien::PeutAllerEn(int dx, int dy) const {
+	return !(dx && dy) && abs(dx) <= 1 && abs(dy) <= 1;
 }
