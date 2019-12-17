@@ -7,6 +7,8 @@ class robotPerso : public robot {
 public:
 	robotPerso(unsigned int vitesse, bool direction[8]);
 
+	virtual ~robotPerso() override = default;
+
 	virtual bool PeutAllerEn(int dx, int dy) const override;
 
 	virtual char typeObjet() const final;
