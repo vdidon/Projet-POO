@@ -1,28 +1,46 @@
 #ifndef OBJET_H
 #define OBJET_H
 
-class objet {
-public:
-	virtual ~objet(); //Destructeur (virtuelle)
+class objet
+{
+    public :
 
-	virtual bool PeutAllerEn(int dx, int dy) const = 0; //Méthode pour savoir si l'objet peut être déplacer (virtuelle)
+        /**
+            Destructeur (virtuel)
+        */
+        virtual ~objet() ;
 
-	virtual char typeObjet() const; //Méthode pour connaître le type de l'objet (virtuelle)
+        /**
+            Méthode pour savoir si l'objet peut être déplacer (virtuelle)
+        */
+        virtual bool PeutAllerEn(int dx, int dy) const = 0 ;
 
-	class TYPES { //Class permettant de donner un type aux objets
-	public:
-		static constexpr char OBJET = 'O'; 		/** Pas utile je pense */
-		static constexpr char ROBOT = 'R';
-		static constexpr char ROBOT_ANCIEN = 'A'; 
-		static constexpr char ROBOT_NOUVEAU = 'N';
-		static constexpr char ROBOT_PERSO = 'P';
-		static constexpr char JOUEUR = 'J';
-		static constexpr char JOUEUR_BASE = 'B';
-		static constexpr char JOUEUR_EXPERT = 'E';
-		static constexpr char MUR = 'M';
-		static constexpr char DEBRIS = 'D';
-		static constexpr char VIDE = '.';
-	};
+        /**
+            Méthode pour connaître le type de l'objet (virtuelle)
+        */
+        virtual char typeObjet() const ;
+
+        /**
+            Classe permettant de donner un type aux objets
+        */
+        class TYPES
+        {
+            public :
+
+                static constexpr char ROBOT_ANCIEN = 'A' ;
+                static constexpr char ROBOT_NOUVEAU = 'N' ;
+                static constexpr char ROBOT_PERSO = 'P' ;
+                static constexpr char JOUEUR_BASE = 'B' ;
+                static constexpr char JOUEUR_EXPERT = 'E' ;
+                static constexpr char MUR = 'M' ;
+                static constexpr char DEBRIS = 'D' ;
+                /**
+                    Du coup, il faut rajouter aussi les abstrait : Objet, Robot, Joueur
+                */
+                static constexpr char OBJET = 'O' ;
+                static constexpr char ROBOT = 'R' ;
+                static constexpr char JOUEUR = 'J' ;
+        };
 };
 
 #endif // OBJET_H

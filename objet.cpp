@@ -1,15 +1,9 @@
 #include "objet.h"
 
-/*objet::objet()
-{}*/
 objet::~objet()
 {}
-char objet::typeObjet() const {
-	return TYPES::OBJET;
+
+char objet::typeObjet() const
+{
+    return TYPES::OBJET ;
 }
-
-// Rien d'autre à rajouter
-
-
-// À modifier/corriger :
-// Les classes mur et debris, faut - ils faire la def du constructeur ou c'est auto ?

@@ -14,10 +14,16 @@ public:
 	virtual char typeObjet() const final;
 
 private:
-	unsigned int d_vitesse; // vitesse du robot à chaque tour
+	/**
+            Vitesse du robot à chaque tour
+        */
+	unsigned int d_vitesse ;
 
-	bool d_direction[8]; // directions dans les quels peut se déplacé le robot,
-	// vers le haut en premier puis le sens horaire
+	/**
+		Directions dans lesquels peut se déplacer un robot
+		Verticalement (1ère case) puis dans le sens des aiguilles d'une montre
+	*/
+	bool d_direction[8] ;
 
 	bool bonneDirection(int dx, int dy) const;
 };
