@@ -10,9 +10,11 @@ class robotPerso : public robot
     public :
 	
         robotPerso(unsigned int vitesse, bool direction[8]) ;
-	virtual ~robotPerso() ;
+		virtual ~robotPerso() ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         virtual char typeObjet() const override ;
+		unsigned int get_vitesse() const ;
+		bool* get_direction() ;
 
     private :
 

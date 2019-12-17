@@ -77,11 +77,13 @@ bool robotPerso::PeutAllerEn(int dx, int dy) const
 	return abs(dx) <= d_vitesse && abs(dy) <= d_vitesse && bonneDirection(dx, dy) ;
 }
 
-unsigned int robotPerso::get_vitesse() const {
-	return d_vitesse;
+unsigned int robotPerso::get_vitesse() const 
+{
+	return d_vitesse ;
 }
 
-bool *robotPerso::get_direction() {
-	return  &d_direction[0];
+bool *robotPerso::get_direction() 
+{
+	return &d_direction[0] ;
 }
 
