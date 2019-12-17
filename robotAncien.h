@@ -5,7 +5,7 @@
 
 class robotAncien : public robot {
 public:
-	virtual bool PeutAllerEn(int dx, int dy) const final;
+	virtual bool PeutAllerEn(int dx, int dy) const override;
 
 	char typeObjet() const final;
 };

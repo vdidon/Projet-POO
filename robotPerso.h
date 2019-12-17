@@ -7,7 +7,7 @@ class robotPerso : public robot {
 public:
 	robotPerso(unsigned int vitesse, bool direction[8]);
 
-	virtual bool PeutAllerEn(int dx, int dy) const final;
+	virtual bool PeutAllerEn(int dx, int dy) const override;
 
 	virtual char typeObjet() const final;
 
