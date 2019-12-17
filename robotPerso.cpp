@@ -46,3 +46,11 @@ robotPerso::~robotPerso() {
 
 }
 
+unsigned int robotPerso::get_vitesse() const {
+	return d_vitesse;
+}
+
+bool *robotPerso::get_direction() {
+	return  &d_direction[0];
+}
+

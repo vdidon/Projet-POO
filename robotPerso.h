@@ -13,6 +13,10 @@ public:
 
 	virtual char typeObjet() const final;
 
+	unsigned int get_vitesse() const;
+
+	bool* get_direction();
+
 private:
 	/**
             Vitesse du robot à chaque tour
