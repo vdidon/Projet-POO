@@ -3,7 +3,7 @@
 
 class objet {
 public:
-	virtual ~objet()=0; //Destructeur (virtuelle)
+	virtual ~objet(); //Destructeur (virtuelle)
 
 	virtual bool PeutAllerEn(int dx, int dy) const = 0; //Méthode pour savoir si l'objet peut être déplacer (virtuelle)
 
