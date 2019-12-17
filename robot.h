@@ -11,8 +11,6 @@
 
 class robot : public objet {
 public :
-	virtual bool PeutAllerEn(int dx, int dy) const override = 0;
-
 	virtual char typeObjet() const override;
 };
 
