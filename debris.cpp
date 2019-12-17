@@ -1,10 +1,15 @@
 #include "debris.h"
 
+/**
+    Un débris ne bouge pas, donc pas besoin de vérifier. Mesure de sécurité
+*/
+// Pose une erreur si on le décommente
 bool debris::PeutAllerEn(int x, int y)
 {
-    return false; //Un mur ne bouge pas (sauf peut-être dans une dimension alternative), donc pas besoin de vérifier. Mesure de sécurité
+    return false ;
 }
 
-char objet::typeObjet() const {
-	return TYPES::OBJET; //Pas de TYPES::DEBRIS donc c'est juste un objet (comme mur)
+char debris::typeObjet() const
+{
+	return TYPES::DEBRIS ;
 }

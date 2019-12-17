@@ -34,9 +34,6 @@ class objet
                 static constexpr char JOUEUR_EXPERT = 'E' ;
                 static constexpr char MUR = 'M' ;
                 static constexpr char DEBRIS = 'D' ;
-                /**
-                    Du coup, il faut rajouter aussi les abstrait : Objet, Robot, Joueur
-                */
                 static constexpr char OBJET = 'O' ;
                 static constexpr char ROBOT = 'R' ;
                 static constexpr char JOUEUR = 'J' ;

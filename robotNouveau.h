@@ -3,15 +3,16 @@
 
 #include "robot.h"
 
-class robotNouveau : public robot {
-public:
-	robotNouveau() = default;
-	virtual ~robotNouveau();
-	virtual bool PeutAllerEn(int dx, int dy) const override;
+#include <cmath>
 
-	virtual char typeObjet() const final;
+class robotNouveau : public robot
+{
+    public :
 
+        robotNouveau() = default ;
+        virtual ~robotNouveau() ;
+        virtual bool PeutAllerEn(int dx, int dy) const override ;
+        virtual char typeObjet() const override ;
 };
 
-
-#endif //ROBOTNOUVEAU_H
+#endif // ROBOTNOUVEAU_H

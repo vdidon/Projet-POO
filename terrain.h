@@ -1,38 +1,98 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
+/** Bibliothèque "Standard" pour cout, cin, endl ... */
 #include <iostream>
+
+/** Pour ne pas avoir à écrire à chaque fois std::cout << ... mais just cout << ... */
+using std::cout ;
+
 #include <vector>
 
-#include "objet.h"
+/** Bibliothèque pour les fichiers */
+#include <fstream>
 
-/*#include "joueur.h"
+/** Classes Abstraites */
+#include "objet.h"
 #include "robot.h"
+#include "joueur.h"
+
+#include "debris.h"
 #include "mur.h"
-#include "debris.h"*/
+
+/** Classes dérivées de la classe joueur */
+#include "joueurBase.h"
+#include "joueurExpert.h"
+
+/** Classes dérivées de la classe robot */
+#include "robotAncien.h"
+#include "robotNouveau.h"
+#include "robotPerso.h"
+
+#include "localisation.h"
 
 class terrain
 {
     public :
-        terrain(int largeur, int hauteur) ; // Constructeur par défaut
-        terrain(const terrain &t) ;  // Constructeur par recopie
-        void chargerTerrain(istream &ist) ;   //Charge une configuration écrit de façon :
-                                                    /**
-                                                        0 0 J            (Joueur)
-                                                        2 5 R1           (Robot de gen 1)
-                                                        2 6 R 01011      (Robot custom)
-                                                        1 3 D            (Débris)
-                                                    */
-        // static terrain& creer(istream &ist) ; A VOIR SI UTILE (= chargerTerrain)
-        void sauvegarder(ostream &ost) const ; // Sauvegarder une config vers un fichier
-        int hauteur() const ;    // Return la hauteur
-        int largeur() const ;    // Return la largeur
-        void resizeHauteur(int x) ;  // Pour changer la hauteur
-        void resizeLargeur(int y) ;  // Pour changer la largeur
-        vector <objet*>& operator[](int i) ; // accès a d_tableau
-        private:
-            //int d_largeur, d_hauteur ;
-            vector <vector <objet*>> d_tableau ;
+        /** Constructeur de la classe terrain
+            @param Largeur - la largeur du terrain
+            @param Hauteur - la hauteur du terrain
+        */
+        terrain(int largeur, int hauteur) ;
+
+        /** Constructeur par recopie de la classe terrain
+            @param t - un terrain à partir duquel on va construire le nouveau
+        */
+        terrain(terrain &t) ;
+
+        /** Procédure permettant de lire un terrain
+            @param NomFichier - le nom du fichier
+            Le fichier est écrit de la façon suivante :
+            10 10            (Hauteur et Largeur)
+            0 0 J            (Joueur)
+            2 5 A           (Robot de gen 1)
+            2 6 P 01011      (Robot custom)
+            1 3 D            (Débris)
+            ...
+        */
+        terrain chargerTerrain(const std::string &NomFichier) ;
+
+        /** Procédure permettant de sauvegarder un terrain
+            @param ost - un fichier pour sauvegarder le terrain
+            @param NomFichier - le nom du fichier
+        */
+        void sauvegarder(const std::string &NomFichier) const ;
+
+        /** Fonction retournant la hauteur du terrain
+            @return un entier qui sera la hauteur du terrain
+        */
+        int hauteur() const ;
+
+        /** Fonction retournant la largeur du terrain
+            @return un entier qui sera la largeur du terrain
+        */
+        int largeur() const ;
+
+        /** Procédure changeant la hauteur du terrain */
+        void ChangerHauteur(int x) ;
+
+        /** Procédure changeant la Largeur du terrain */
+        void ChangerLargeur(int y) ;
+
+        /** Procédure permettant l'affichage du terrain de jeu
+            @param t - Le terrain de jeu
+        */
+        void AffichageTerrain(const terrain &t) const ;
+
+        /** Méthode nous permettant d'accéder en lecture / écriture d'une case du tableau d'objet du terrain
+            @param i - L'indice de la case que nous voulons renvoyer
+            @return une case du tableau (exemple : .)
+        */
+        std::vector <objet*>& operator[](int i) ;
+
+        private :
+
+            std::vector <std::vector <objet*>> d_tableau ;
 };
 
 #endif // TERRAIN_H

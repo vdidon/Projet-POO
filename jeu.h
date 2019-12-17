@@ -3,16 +3,20 @@
 
 #include "terrain.h"
 
+// A voir si on aura besoin d'autres #include
+
 class jeu
 {
     public :
+
         jeu() ;
         void run() ;
-
         // int score() ;
 
     private :
-        //int d_score ; // Si on a le temps
+
+        // Si on a le temps
+        //int d_score ;
         terrain d_terrain ;
 };
 
