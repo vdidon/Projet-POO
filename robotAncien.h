@@ -5,7 +5,7 @@
 
 class robotAncien : public robot {
 public:
-	virtual ~robotAncien() override = default;
+	virtual ~robotAncien() ;
 	virtual bool PeutAllerEn(int dx, int dy) const override;
 
 	char typeObjet() const final;
