@@ -42,3 +42,7 @@ bool robotPerso::PeutAllerEn(int dx, int dy) const {
 	return abs(dx) <= d_vitesse && abs(dy) <= d_vitesse && bonneDirection(dx, dy);
 }
 
+robotPerso::~robotPerso() {
+
+}
+

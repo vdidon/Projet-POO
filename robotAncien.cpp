@@ -8,3 +8,7 @@ char robotAncien::typeObjet() const {
 bool robotAncien::PeutAllerEn(int dx, int dy) const {
 	return !(dx && dy) && abs(dx) <= 1 && abs(dy) <= 1;
 }
+
+robotAncien::~robotAncien() {
+
+}
