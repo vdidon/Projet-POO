@@ -3,34 +3,32 @@
 
 #include "robot.h"
 
-class robotPerso : public robot {
-public:
-	robotPerso(unsigned int vitesse, bool direction[8]);
+#include <cmath>
 
-	virtual ~robotPerso() override;
+class robotPerso : public robot
+{
+    public :
 
-	virtual bool PeutAllerEn(int dx, int dy) const override;
+        robotPerso(unsigned int vitesse, bool direction[8]) ;
+        virtual ~robotPerso() ;
+        virtual bool PeutAllerEn(int dx, int dy) const override ;
 
-	virtual char typeObjet() const final;
+        //Voir si utile virtual char typeObjet() const override ;
 
-	unsigned int get_vitesse() const;
+    private :
 
-	bool *get_direction();
-
-private:
-	/**
+        /**
             Vitesse du robot à chaque tour
         */
-	unsigned int d_vitesse;
+        unsigned int d_vitesse ;
 
-	/**
-		Directions dans lesquels peut se déplacer un robot
-		Verticalement (1ère case) puis dans le sens des aiguilles d'une montre
-	*/
-	bool d_direction[8];
+        /**
+            Directions dans lesquels peut se déplacer un robot
+            Verticalement (1ère case) puis dans le sens des aiguilles d'une montre
+        */
+        bool d_direction[8] ;
 
-	bool bonneDirection(int dx, int dy) const;
+        bool bonneDirection(int dx, int dy) const ;
 };
 
-
-#endif //ROBOTPERSO_H
+#endif // ROBOTPERSO_H

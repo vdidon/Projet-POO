@@ -3,11 +3,6 @@
 joueur::~joueur()
 {}
 
-char joueur::typeObjet() const
-{
-    return TYPES::JOUEUR ;
-}
-
 /** A voir si c'est une méthode de terrain ou non
 bool evalCase(const Terrain &gr, int lig, int col)
 {
@@ -35,7 +30,6 @@ char joueur::testChoixUtilisateur(char choix, const string &phrase)
 
 void joueur::interactionJoueurExpert(int &x1, int &y1)
 {
-    // bool ok = false ;
     char choix ;
     if(testChoixUtilisateur(choix, "Deplacer le joueur horizontalement ? (y or n)") == 'y')
     {
@@ -54,7 +48,6 @@ void joueur::interactionJoueurExpert(int &x1, int &y1)
 
 void joueur::interactionJoueurBase(int &x1, int &y1)
 {
-    // bool ok = false ;
     char choix ;
     if(testChoixUtilisateur(choix, "Deplacer le joueur en diagonale? (y or n)") =='y')
     {

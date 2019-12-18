@@ -3,26 +3,34 @@
 terrain::terrain(int largeur, int hauteur) : d_tableau{hauteur, std::vector <objet*>(largeur, nullptr)}
 {}
 
-terrain::terrain(terrain &t) : terrain(t.hauteur(), t.largeur())
+terrain::terrain(const terrain &t) //: terrain(t.hauteur(), t.largeur()) Comprends pas pourquoi mais ça marche pas
 {
+    d_tableau.resize(t.hauteur()) ;
     for(int i = 0 ; i < hauteur() ; i++)
     {
+        d_tableau[i].resize(t.largeur()) ;
         for(int j = 0 ; j < largeur() ; j++)
         {
-            d_tableau[i][j] = t[i][j] ;
+            d_tableau[i][j] = t.d_tableau[i][j] ;
         }
     }
 }
 
 // Reste encore à tester si fonctionnel (DOCTEST)
-terrain terrain::chargerTerrain(const std::string &NomFichier)
+void terrain::chargerTerrain(const std::string &NomFichier)
 {
     std::ifstream f(NomFichier + ".txt") ;
     int Hauteur = hauteur(), Largeur = largeur() ;
     char retourALaLigne = '\n', espace = ' ' ;
     f >> Hauteur >> espace >> Largeur >> retourALaLigne ;
-    // Remet le vecteur à l'état de départ, c'est-à-dire taille 0 et aucun élément
-    terrain t(Largeur, Hauteur) ;
+    /**
+        Remet le vecteur à l'état de départ, c'est-à-dire taille 0 et aucun élément
+    */
+    d_tableau.clear() ;
+    /**
+        Redimentionne le tableau
+    */
+    d_tableau.resize(Hauteur, std::vector <objet*>(Largeur, nullptr)) ;
     while(!f.eof())
     {
         for(int i = 0 ; i < hauteur() ; ++i)
@@ -32,39 +40,51 @@ terrain terrain::chargerTerrain(const std::string &NomFichier)
                 int Position_X = i, Position_Y = j ;
                 char Objet ;
                 f >> Position_X >> espace >> Position_Y >> espace >> Objet >> retourALaLigne ;
+                localisation l{Position_X, Position_Y} ;
                 switch(Objet)
                 {
                     case objet::TYPES::DEBRIS :
-                        // Pose une erreur si on le décommente
-                        t.d_tableau[Position_X][Position_Y] = debris() ;
+                        d_tableau[Position_X][Position_Y] = new debris() ;
                         break ;
+
                     case objet::TYPES::JOUEUR_BASE :
-                        // Pose une erreur si on le décommente
-                        t.d_tableau[Position_X][Position_Y] = new joueurBase(localisation(Position_X, Position_Y)) ;
+                        d_tableau[Position_X][Position_Y] = new joueurBase() ;
                         break ;
+
                     case objet::TYPES::JOUEUR_EXPERT :
-                        // Pose une erreur si on le décommente
-                        t.d_tableau[Position_X][Position_Y] = new joueurExpert(localisation(Position_X, Position_Y)) ;
+                        d_tableau[Position_X][Position_Y] = new joueurExpert() ;
                         break ;
+
                     case objet::TYPES::MUR :
-                        // Pose une erreur si on le décommente
-                        t.d_tableau[Position_X][Position_Y] = new mur() ;
-                            break ;
+                        d_tableau[Position_X][Position_Y] = new mur() ;
+                        break ;
+
                     case objet::TYPES::ROBOT_ANCIEN :
-                        t.d_tableau[Position_X][Position_Y] = new robotAncien() ;
+                        d_tableau[Position_X][Position_Y] = new robotAncien() ;
                         break ;
+
                     case objet::TYPES::ROBOT_NOUVEAU :
-                        t.d_tableau[Position_X][Position_Y] = new robotNouveau() ;
+                        d_tableau[Position_X][Position_Y] = new robotNouveau() ;
                         break ;
+
                     case objet::TYPES::ROBOT_PERSO :
-                        // Pose une erreur si on le décommente
-                        t.d_tableau[Position_X][Position_Y] = new robotPerso(/* Vitesse, tableau de direction */) ;
+                        int direction, vitesse ;
+                        f >> vitesse ;
+                        bool direct[8] ;
+                        for(int i = 0 ; i < 8 ; i++)
+                        {
+                            f >> direction ;
+                            direct[i] = direction ;
+                        }
+                        d_tableau[Position_X][Position_Y] = new robotPerso(vitesse, direct) ;
                         break ;
+
+                    default :
+                        d_tableau[i][j] = nullptr ;
                 }
             }
         }
     }
-    return t ;
 }
 
 // Reste encore à tester si fonctionnel (DOCTEST)

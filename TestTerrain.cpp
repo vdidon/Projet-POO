@@ -62,31 +62,61 @@ TEST_CASE("Test du terrain de jeu")
     }
 
     /**
-        NE FONCITONNE PAS
-        SUBCASE("La création d'un nouveau terrain grâce à un ancien est correct")
+    NE FONCITONNE PAS si on met t1[0][0] = new debris() ...
+    SUBCASE("La création d'un nouveau terrain grâce à un ancien est correct")
+    {
+        int hauteur = 2, largeur = 3 ;
+        terrain t1{largeur, hauteur} ;
+        /**
+            Pour pouvoir vérifier les valeurs :
+
+            cout << "Terrain initial :\n" ;
+            cout << "Valeurs :\n" ;
+            cout << "Hauteur : " << hauteur << endl ;
+            cout << "Largeur : " << largeur << endl ;
+            cout << "Fonctions :\n" ;
+            cout << "Hauteur : " << t1.hauteur() << endl ;
+            cout << "Largeur : " << t1.largeur() << endl ;
+
+        terrain t2{t1} ;
+        /**
+            Pour pouvoir vérifier les valeurs :
+
+            cout << "Terrain construit avec le terrin initial :\n" ;
+            cout << "Valeurs :\n" ;
+            cout << "Hauteur : " << hauteur << endl ;
+            cout << "Largeur : " << largeur << endl ;
+            cout << "Fonctions :\n" ;
+            cout << "Hauteur : " << t2.hauteur() << endl ;
+            cout << "Largeur : " << t2.largeur() << endl ;
+
+        // Méthode pour changer le type
+        REQUIRE_EQ(t2.hauteur(), t1.hauteur()) ;
+        REQUIRE_EQ(t2.largeur(), t1.largeur()) ;
+        for(int i = 0 ; i < t2.hauteur() ; i++)
         {
-            int hauteur = 2, largeur = 3 ;
-            terrain t1{largeur, hauteur} ;
-            terrain t2{t1} ; // N'arrive pas à faire ça
-            REQUIRE_EQ(t2.hauteur(), t1.hauteur()) ;
-            REQUIRE_EQ(t2.largeur(), t1.largeur()) ;
-            for(int i = 0 ; i < t2.hauteur() ; i++)
+            for(int j = 0 ; j < t2.largeur() ; j++)
             {
-                for(int j = 0 ; j < t2.largeur() ; j++)
-                {
-                    // Arrive pas à tester
-                }
+                REQUIRE_EQ(t1[i][j], t2[i][j]) ;
+                /**
+                    Vérifications des valeurs :
+
+                    cout << "t1[i][j] = " << "t1[" << i << "][" << j << "] = " << t1[i][j] << '\n' ;
+                    cout << "t2[i][j] = " << "t2[" << i << "][" << j << "] = " << t2[i][j] << '\n' ;
+
             }
+            cout << '\n' ;
         }
+    }
     */
 
     SUBCASE("Un terrain vide ne contient que des cases vides")
     {
         int hauteur = 2, largeur = 3 ;
         terrain t{largeur, hauteur} ;
-        for(int i = 0 ; i < t.hauteur() ; ++i)
+        for(int i = 0 ; i < t.hauteur() ; i++)
         {
-            for(int j = 0 ; j < t.largeur() ; ++j)
+            for(int j = 0 ; j < t.largeur() ; j++)
             {
                 REQUIRE_EQ(t[i][j], nullptr) ;
             }
@@ -106,6 +136,11 @@ TEST_CASE("Test du terrain de jeu")
         {
             int hauteur = 2, largeur = 3 ;
             terrain t{largeur, hauteur} ;
+            std::string formatAttendu = "2 3\n0 0 0\n 0 1 0\n 0 2 0\n 1 0 0\n 1 1 0\n 1 2 0", formatLu ;
+            t.chargerTerrain("TestSauvegarde") ;
+            std::ifstream ist{"TestSauvegarde"} ;
+            getline(ist,formatLu) ;
+            REQUIRE(formatLu == formatAttendu) ;
         }
 
         SUBCASE("Le chargement d'un terrain à partir d'un fichier est correcte")

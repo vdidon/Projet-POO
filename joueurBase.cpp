@@ -1,6 +1,6 @@
 #include "joueurBase.h"
 
-joueurBase::joueurBase(const localisation &pos): d_vivant{true}, d_coordonnee{pos}
+joueurBase::joueurBase(): d_vivant{true}, d_coordonnee{}
 {}
 
 bool joueurBase::deplaceEn(int x, int y)
@@ -18,7 +18,12 @@ bool joueurBase::estVivant() const
     return d_vivant ;
 }
 
-localisation joueurBase::position() const
+bool joueurBase::PeutAllerEn(int dx, int dy) const
 {
-    return d_coordonnee ;
+    // A faire
 }
+
+/*char joueurBase::typeObjet() const
+{
+    return TYPES::JOUEUR_BASE ;
+}*/

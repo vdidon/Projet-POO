@@ -1,11 +1,12 @@
 #include "joueurExpert.h"
 
-joueurExpert::joueurExpert(const localisation &pos): d_vivant{true}, d_coordonnee{pos}
+joueurExpert::joueurExpert(): d_vivant{true}, d_coordonnee{}
 {}
 
 bool joueurExpert::deplaceEn(int x, int y)
 {
 	d_coordonnee.moveTo(x, y) ;
+	return true ; // Sinon warning car doit retoruner quelque chose
 }
 
 void joueurExpert::tuer()
@@ -18,7 +19,12 @@ bool joueurExpert::estVivant() const
     return d_vivant ;
 }
 
-localisation joueurExpert::position() const
+bool joueurExpert::PeutAllerEn(int dx, int dy) const
 {
-    return d_coordonnee ;
+    // A faire
 }
+
+/*char joueurExpert::typeObjet() const
+{
+    return TYPES::JOUEUR_EXPERT ;
+}*/

@@ -34,6 +34,7 @@ using std::cout ;
 class terrain
 {
     public :
+
         /** Constructeur de la classe terrain
             @param Largeur - la largeur du terrain
             @param Hauteur - la hauteur du terrain
@@ -43,7 +44,7 @@ class terrain
         /** Constructeur par recopie de la classe terrain
             @param t - un terrain à partir duquel on va construire le nouveau
         */
-        terrain(terrain &t) ;
+        terrain(const terrain &t) ;
 
         /** Procédure permettant de lire un terrain
             @param NomFichier - le nom du fichier
@@ -55,7 +56,7 @@ class terrain
             1 3 D            (Débris)
             ...
         */
-        terrain chargerTerrain(const std::string &NomFichier) ;
+        void chargerTerrain(const std::string &NomFichier) ;
 
         /** Procédure permettant de sauvegarder un terrain
             @param ost - un fichier pour sauvegarder le terrain
@@ -84,15 +85,17 @@ class terrain
         */
         void AffichageTerrain(const terrain &t) const ;
 
+        // Méthode pour changer le type
+
         /** Méthode nous permettant d'accéder en lecture / écriture d'une case du tableau d'objet du terrain
             @param i - L'indice de la case que nous voulons renvoyer
             @return une case du tableau (exemple : .)
         */
         std::vector <objet*>& operator[](int i) ;
 
-        private :
+    private :
 
-            std::vector <std::vector <objet*>> d_tableau ;
+        std::vector <std::vector <objet*>> d_tableau ;
 };
 
 #endif // TERRAIN_H

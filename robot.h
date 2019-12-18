@@ -3,10 +3,12 @@
 
 #include "objet.h"
 
-class robot : public objet {
-public :
-	virtual ~robot() override;
-	//virtual char typeObjet() const override;
+class robot : public objet
+{
+    public :
+
+        virtual ~robot() ;
+        virtual bool PeutAllerEn(int dx, int dy) const = 0 ;
 };
 
 #endif // ROBOT_H
