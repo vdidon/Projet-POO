@@ -1,6 +1,10 @@
 #include "joueurExpert.h"
 #include <algorithm>
 
+
+/*
+//Methode PeutAllerEn implementer pour le joueur expert 
+*/
 bool joueurExpert::PeutAllerEn(int dx, int dy)const
 {
     int dxValeurAbsolue=abs(dx);
