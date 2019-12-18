@@ -6,7 +6,9 @@
 class robotNouveau : public robot {
 public:
 	robotNouveau() = default;
+
 	virtual ~robotNouveau() override;
+
 	virtual bool PeutAllerEn(int dx, int dy) const override;
 
 	virtual char typeObjet() const final;
