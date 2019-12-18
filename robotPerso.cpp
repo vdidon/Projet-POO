@@ -1,4 +1,5 @@
 #include "robotPerso.h"
+#include <cmath>
 
 robotPerso::robotPerso(unsigned int vitesse, bool direction[8]) : d_vitesse{vitesse}, d_direction{direction}
 {}

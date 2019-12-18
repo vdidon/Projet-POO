@@ -1,4 +1,5 @@
 #include "robotNouveau.h"
+#include <cmath>
 
 robotNouveau::~robotNouveau()
 {}
