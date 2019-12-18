@@ -1,29 +1,19 @@
 #include "joueurBase.h"
+#include <algorithm>
 
-joueurBase::joueurBase(): d_vivant{true}, d_coordonnee{}
-{}
-
-bool joueurBase::deplaceEn(int x, int y)
+bool joueurBase::PeutAllerEn(int dx, int dy)const
 {
-    d_coordonnee.moveTo(x, y) ;
+
+    if(abs(dx)<=1 && abs(dy)<=1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
 }
 
-void joueurBase::tuer()
-{
-    d_vivant = false ;
-}
 
-bool joueurBase::estVivant() const
-{
-    return d_vivant ;
-}
 
-bool joueurBase::PeutAllerEn(int dx, int dy) const
-{
-    // A faire
-}
-
-/*char joueurBase::typeObjet() const
-{
-    return TYPES::JOUEUR_BASE ;
-}*/
