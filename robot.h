@@ -5,7 +5,8 @@
 
 class robot : public objet {
 public :
-	virtual char typeObjet() const override;
+	virtual ~robot() override;
+	//virtual char typeObjet() const override;
 };
 
 #endif // ROBOT_H
