@@ -1,5 +1,7 @@
 #include "robotAncien.h"
 
+#include <cmath>
+
 robotAncien::~robotAncien()
 {}
 

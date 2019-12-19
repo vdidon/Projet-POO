@@ -3,7 +3,6 @@
 
 #include "robot.h"
 
-#include <cmath>
 
 class robotAncien : public robot
 {
