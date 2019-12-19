@@ -7,7 +7,7 @@ class robot : public objet
 {
     public :
 
-        virtual ~robot() ;
+        virtual ~robot() override ;
         virtual bool PeutAllerEn(int dx, int dy) const = 0 ;
 };
 

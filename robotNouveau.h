@@ -10,7 +10,7 @@ class robotNouveau : public robot
     public :
 
         robotNouveau() = default ;
-        virtual ~robotNouveau() ;
+        virtual ~robotNouveau() override ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         //Voir si utile virtual char typeObjet() const override ;
 };
