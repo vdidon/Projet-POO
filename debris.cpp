@@ -1,7 +1,9 @@
 #include "debris.h"
 
-debris::debris()
-{}
+debris::debris(const char &Type_Debris)
+{
+    d_type = Type_Debris ;
+}
 
 /**
     Un débris ne bouge pas, donc pas besoin de vérifier. Mesure de sécurité
@@ -11,8 +13,7 @@ bool debris::PeutAllerEn(int x, int y) const
     return false ;
 }
 
-// voir si utile
-/*char debris::typeObjet() const
+char debris::typeObjet() const
 {
-	return TYPES::DEBRIS ;
-}*/
+    return d_type ;
+}

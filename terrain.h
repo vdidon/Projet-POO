@@ -19,6 +19,7 @@ using std::cout ;
 
 #include "debris.h"
 #include "mur.h"
+#include "CaseVide.h"
 
 /** Classes dérivées de la classe joueur */
 #include "joueurBase.h"
@@ -29,40 +30,23 @@ using std::cout ;
 #include "robotNouveau.h"
 #include "robotPerso.h"
 
-#include "localisation.h"
-
 class terrain
 {
     public :
 
         /** Constructeur de la classe terrain
-            @param Largeur - la largeur du terrain
-            @param Hauteur - la hauteur du terrain
+            @param hauteur - la hauteur du terrain
+            @param largeur - la largeur du terrain
         */
-        terrain(int largeur, int hauteur) ;
+        terrain(int hauteur = 0, int largeur = 0) ;
+
+        /** Destructeur */
+        ~terrain() = default ;
 
         /** Constructeur par recopie de la classe terrain
             @param t - un terrain à partir duquel on va construire le nouveau
         */
         terrain(const terrain &t) ;
-
-        /** Procédure permettant de lire un terrain
-            @param NomFichier - le nom du fichier
-            Le fichier est écrit de la façon suivante :
-            10 10            (Hauteur et Largeur)
-            0 0 J            (Joueur)
-            2 5 A           (Robot de gen 1)
-            2 6 P 01011      (Robot custom)
-            1 3 D            (Débris)
-            ...
-        */
-        void chargerTerrain(const std::string &NomFichier) ;
-
-        /** Procédure permettant de sauvegarder un terrain
-            @param ost - un fichier pour sauvegarder le terrain
-            @param NomFichier - le nom du fichier
-        */
-        void sauvegarder(const std::string &NomFichier) const ;
 
         /** Fonction retournant la hauteur du terrain
             @return un entier qui sera la hauteur du terrain
@@ -80,18 +64,67 @@ class terrain
         /** Procédure changeant la Largeur du terrain */
         void ChangerLargeur(int y) ;
 
+        /** Fonction permettant de savoir si une case est bien dans le terrain
+            @param l - La ligne de la case à vérifier
+            @param c - La colonne de la case à vérifier
+            @return Vrai si elle y est, Faux sinon
+        */
+        bool evalCase(int l, int c) const ;
+
+        /** Fonction permettant de savoir si un caractère ne correpondant à aucun objet à été entré
+            @param
+            @return Vrai si le caractère est différents de tous les types d'objets, Faux sinon
+        */
+        bool CaractereInvalide(const char &TypeObjet) const ;
+
         /** Procédure permettant l'affichage du terrain de jeu
             @param t - Le terrain de jeu
         */
-        void AffichageTerrain(const terrain &t) const ;
+        void AffichageTerrain() const ;
 
-        // Méthode pour changer le type
-
-        /** Méthode nous permettant d'accéder en lecture / écriture d'une case du tableau d'objet du terrain
-            @param i - L'indice de la case que nous voulons renvoyer
-            @return une case du tableau (exemple : .)
+        /** Procédure permettant de sauvegarder un terrain
+            @param ost - un fichier pour sauvegarder le terrain
+            @param NomFichier - le nom du fichier
         */
-        std::vector <objet*>& operator[](int i) ;
+        void sauvegarder(const std::string &NomFichier) const ;
+
+        /** Fonction permettant de lire un terrain
+            @param NomFichier - le nom du fichier
+            Le fichier est écrit de la façon suivante :
+            10 10            (Hauteur et Largeur)
+            0 0 J            (Joueur)
+            2 5 A           (Robot de gen 1)
+            2 6 P 01011      (Robot custom)
+            1 3 D            (Débris)
+            ...
+        */
+        terrain& chargerTerrain(const std::string &NomFichier) ;
+
+        /** Méthode permettant de récuperer la case (x,y) du terrain
+            @param x - La ligne de la case à récupérer
+            @param y - La colonne de la case à récupérer
+            @return Une case du tableau donc unpointeur sur un objet
+        */
+        objet* Case(int x, int y) const ;
+
+        /** Méthode permettant de récuperer le type d'une case
+            @param x - La ligne de la case à récupérer
+            @param y - La colonne de la case à récupérer
+            @return Un caratcère qui est le type de l'objet
+        */
+        char typeCase(int lig, int col) const ;
+
+        /** Procédure permettant de changer le type d'un objet du terrain
+            @param Ligne - la ligne de la case du type de l'objet à changer
+            @param Colonne - la colonne de la case du type de l'objet à changer
+        */
+        void ChangerTypeObjet(int Ligne, int Colonne, const char &NewType) ;
+
+        /** Procédure permettant d'ajouter un objet dans le terrain
+            @param ligne - la ligne de la case du type de l'objet à changer
+            @param colonne - la colonne de la case du type de l'objet à changer
+        */
+        void AjouterObjet(int ligne, int colonne, const char &Type_Objet) ;
 
     private :
 

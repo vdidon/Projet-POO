@@ -2,16 +2,18 @@
 
 #include <cmath>
 
-robotPerso::robotPerso(unsigned int vitesse, bool direction[8]) : d_vitesse{vitesse}, d_direction{direction}
-{}
+robotPerso::robotPerso(unsigned int vitesse, bool direction[8], const char &Type_Robot_Perso) : d_vitesse{vitesse}, d_direction{direction}
+{
+    d_type = Type_Robot_Perso ;
+}
 
 robotPerso::~robotPerso()
 {}
 
-/*char robotPerso::typeObjet() const
+char robotPerso::typeObjet() const
 {
-     return objet::TYPES::ROBOT_PERSO ;
-}*/
+     return d_type ;
+}
 
 bool robotPerso::bonneDirection(int dx, int dy) const
 {

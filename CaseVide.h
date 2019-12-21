@@ -1,14 +1,13 @@
-#ifndef MUR_H
-#define MUR_H
+#ifndef CASEVIDE_H
+#define CASEVIDE_H
 
 #include "objet.h"
-#include "localisation.h"
 
-class mur : public objet
+class CaseVide : public objet
 {
     public :
 
-        mur(const char &Type_Mur = objet::TYPES::MUR) ;
+        CaseVide(const char &Type_Case_Vide = objet::TYPES::VIDE) ;
 
         /**
             Méthode pour savoir si l'objet peut être déplacer (virtuelle)
@@ -21,4 +20,4 @@ class mur : public objet
         virtual char typeObjet() const override ;
 };
 
-#endif // MUR_H
+#endif // CASEVIDE_H

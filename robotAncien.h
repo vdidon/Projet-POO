@@ -3,15 +3,14 @@
 
 #include "robot.h"
 
-
 class robotAncien : public robot
 {
     public :
 
-        robotAncien() = default ;
-		virtual ~robotAncien() override ;
+        robotAncien(const char &Type_Robot_Ancien = objet::TYPES::ROBOT_ANCIEN) ;
+        ~robotAncien() override ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
-        // Voir si utile virtual char typeObjet() const override ;
+        virtual char typeObjet() const override ;
 };
 
 #endif // ROBOTANCIEN_H

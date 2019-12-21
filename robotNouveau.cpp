@@ -2,13 +2,18 @@
 
 #include <cmath>
 
+robotNouveau::robotNouveau(const char &Type_robot_Nouveau)
+{
+    d_type = Type_robot_Nouveau ;
+}
+
 robotNouveau::~robotNouveau()
 {}
 
-/*char robotNouveau::typeObjet() const
+char robotNouveau::typeObjet() const
 {
-     return objet::TYPES::ROBOT_NOUVEAU ;
-}*/
+    return d_type ;
+}
 
 bool robotNouveau::PeutAllerEn(int dx, int dy) const
 {

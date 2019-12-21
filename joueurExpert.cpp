@@ -1,21 +1,37 @@
 #include "joueurExpert.h"
+
 #include <algorithm>
 
-
-/*
-//Methode PeutAllerEn implementer pour le joueur expert 
-*/
-bool joueurExpert::PeutAllerEn(int dx, int dy)const
+joueurExpert::joueurExpert(const char &Type_Joueur_Expert): d_vivant{true}, d_coordonnee{}
 {
-    int dxValeurAbsolue=abs(dx);
-    int dyValeurAbsolue=abs(dy);
-    if((dxValeurAbsolue==1&& dyValeurAbsolue==0) || (dxValeurAbsolue==0&& dyValeurAbsolue==1))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    d_type = Type_Joueur_Expert ;
 }
 
+bool joueurExpert::deplaceEn(int x, int y)
+{
+	d_coordonnee.moveTo(x, y) ;
+	return ((d_coordonnee.x() == x) && (d_coordonnee.y() == y)) ; // Retourne si les coordonnées ont bien changée
+}
+
+void joueurExpert::tuer()
+{
+    d_vivant = false ;
+}
+
+bool joueurExpert::estVivant() const
+{
+    return d_vivant ;
+}
+
+bool joueurExpert::PeutAllerEn(int dx, int dy) const
+{
+    int dxValeurAbsolue = abs(dx) ;
+    int dyValeurAbsolue = abs(dy) ;
+    return (((dxValeurAbsolue == 1) && (dyValeurAbsolue == 0)) || ((dxValeurAbsolue == 0) && (dyValeurAbsolue == 1))) ;
+    // simplicfication
+}
+
+char joueurExpert::typeObjet() const
+{
+    return d_type ;
+}

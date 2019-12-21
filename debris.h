@@ -7,7 +7,7 @@ class debris : public objet
 {
     public :
 
-        debris() ;
+        debris(const char &Type_Debris = objet::TYPES::DEBRIS) ;
 
         /**
             Méthode pour savoir si l'objet peut être déplacer (virtuelle)
@@ -17,8 +17,7 @@ class debris : public objet
         /**
             Méthode pour connaître le type de l'objet (virtuelle)
         */
-        // Voir si utile
-        //virtual char typeObjet() const override ;
+        virtual char typeObjet() const override ;
 };
 
 #endif // DEBRIS_H

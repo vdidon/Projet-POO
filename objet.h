@@ -18,7 +18,7 @@ class objet
         /**
             Méthode pour connaître le type de l'objet (virtuelle)
         */
-        //Voir si utile virtual char typeObjet() const = 0 ;
+        virtual char typeObjet() const ;
 
         /**
             Classe permettant de donner un type aux objets
@@ -34,7 +34,10 @@ class objet
                 static constexpr char JOUEUR_EXPERT = 'E' ;
                 static constexpr char MUR = 'M' ;
                 static constexpr char DEBRIS = 'D' ;
+                static constexpr char VIDE = '.' ;
         };
+
+        char d_type ;
 };
 
 #endif // OBJET_H

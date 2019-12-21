@@ -3,17 +3,14 @@
 
 #include "robot.h"
 
-
-
 class robotPerso : public robot
 {
     public :
 
-        robotPerso(unsigned int vitesse, bool direction[8]) ;
-        virtual ~robotPerso() override ;
+        robotPerso(unsigned int vitesse, bool direction[8], const char &Type_Robot_Perso = objet::TYPES::ROBOT_PERSO) ;
+        virtual ~robotPerso() ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
-
-        //Voir si utile virtual char typeObjet() const override ;
+        virtual char typeObjet() const override ;
 
     private :
 

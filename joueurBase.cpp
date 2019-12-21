@@ -1,22 +1,34 @@
 #include "joueurBase.h"
+
 #include <algorithm>
 
-/*
-//Methode PeutAllerEn implementer pour joueur de base
-*/
-bool joueurBase::PeutAllerEn(int dx, int dy)const
+joueurBase::joueurBase(const char &Type_Joueur_Base) : d_vivant{true}, d_coordonnee{}
 {
-
-    if(abs(dx)<=1 && abs(dy)<=1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
+    d_type = Type_Joueur_Base ;
 }
 
+bool joueurBase::deplaceEn(int x, int y)
+{
+    d_coordonnee.moveTo(x, y) ;
+    return ((d_coordonnee.x() == x) && (d_coordonnee.y() == y)) ;
+}
 
+void joueurBase::tuer()
+{
+    d_vivant = false ;
+}
 
+bool joueurBase::estVivant() const
+{
+    return d_vivant ;
+}
+
+bool joueurBase::PeutAllerEn(int dx, int dy) const
+{
+    return ((abs(dx) <= 1) && (abs(dy) <= 1)) ;
+}
+
+char joueurBase::typeObjet() const
+{
+    return d_type ;
+}
