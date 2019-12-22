@@ -20,7 +20,7 @@ void jeu::run()
 	switch (choix)
 	{
 	case 0:
-		return 0;
+		return;
 		break;
 	case 1:
 		lancerJeu();
@@ -35,7 +35,80 @@ void jeu::run()
 
 void jeu::lancerJeu()
 {
-	// A faire
+	// Plan de la méthode :
+	/*
+		D'abord vérifier qu'il y a un objet joueur (type quelconque) et au moins un robot
+		Enregistrer la position du joueur pour éviter de devoir la chercher à nouveau
+		Dans la boucle :																									
+			Afficher le terrain
+			Demander au joueur de déplacer son objet
+			Déplacer les robots en fonction du joueur
+			Vérifier si des robots se sont fait détruire, ou si le joueur a perdu
+				--> Si le joueur n'a pas perdu et il reste des robots, Afficher le terrain et recommencer la boucle
+				--> Si le joueur a perdu, afficher game over et quitter la boucle
+				--> Si le joueur n'a pas perdu et il ne reste plus de robots, afficher Gagné et quitter la boucle
+	*/
+	// Ce qu'il reste à faire :
+	/*
+		- Dans la boucle, déplacer le joueurs et les robots, faire les vérifications, et arreter le jeu si besoin
+		- Trouver un meilleur moyen d'entrer dans la boucle avec le bon type de joueur (peut-être inclure un nbTour, et un if (nbTour == 0)
+			qui initialise le type de objetJoueur
+	*/
+	int joueurPresent = 0;
+	int joueurX, joueurY;
+	bool auMoinsUnRobot = false;
+	for (int i = 0; i < d_terrain.hauteur() && (joueurPresent < 1 || auMoinsUnRobot == false); ++i)
+	{
+		for (int j = 0; j < d_terrain.largeur() && (joueurPresent < 1 || auMoinsUnRobot == false); ++j)
+		{
+			if (d_terrain.typeCase(i, j) == 'B' || d_terrain.typeCase(i, j) == 'E')
+			{
+				joueurPresent++;
+				joueurX = i;
+				joueurY = j;
+			}
+			if (d_terrain.typeCase(i, j) == 'A' || d_terrain.typeCase(i, j) == 'N' || d_terrain.typeCase(i, j) == 'P')
+			{
+				auMoinsUnRobot = true;
+			}
+		}
+	}
+	if (joueurPresent < 1 || joueurPresent > 1 || auMoinsUnRobot == false)
+	{
+		std::cout << "ERREUR : Vérifier que les conditions suivantes soient remplies :" << std::endl;
+		std::cout << "- Il ne doit y avoir qu'un seul objet joueur dans le terrain" << std::endl;
+		std::cout << "- Il doit y avoir au moins un objet robot dans le terrain" << std::endl;
+		std::cout << "Le programme va retourner au menu principal. Appuyer sur une touche pour retourner au menu." << std::endl;
+		//Il faudrait laisser le programme attendre que l'utilisateur entre une touche (getchar() ?)
+		return;
+	}
+	else
+	{
+		bool partieFinie = false;
+		char typeJoueur = d_terrain.typeCase(joueurX, joueurY);
+		if (typeJoueur == 'B')
+		{
+			joueurBase objetJoueur = *d_terrain.Case(joueurX, joueurY); //Visual indique une erreur ici pour d_terrain (objet* vers joueurBase)
+			while (partieFinie == false)
+			{
+				d_terrain.AffichageTerrain();
+				std::cout << std::endl;
+
+				// Déplacer le joueur, puis déplacer les robots, puis vérifications
+			}
+		}
+		else
+		{
+			joueurExpert objetJoueur = *d_terrain.Case(joueurX, joueurY); //idem ici (objet vers joueurExpert)
+			while (partieFinie == false)
+			{
+				d_terrain.AffichageTerrain();
+				std::cout << std::endl;
+				// Déplacer le joueur, puis déplacer les robots, puis vérifications
+			}
+		}
+	}
+
 }
 
 void jeu::configuration()
@@ -89,6 +162,11 @@ void jeu::configuration()
 void jeu::customiserTerrain()
 {
 	// À finir
+	/*
+		Ligne [201] et [212] : Si on supprime des cases en mettant une taille plus petite que la taille initiale,
+			les objets concernés par ce changement de taille sont-ils automatiquement supprimé ?
+		Ligne [253] et [257]: Cela permet de créer un objet, mais comment demander à la personne de personnaliser le type robot et joueur perso ?
+	*/
 
 	int choix = INT_MAX;
 	do
@@ -114,22 +192,24 @@ void jeu::customiserTerrain()
 		} while (choix2 != 1 && choix2 != 2);
 		if (choix2 == 1)
 		{
-			int hauteur;
+			int hauteur = 0;
 			do
 			{
 				std::cout << "Entrer la hauteur souhaitée : ";
 				std::cin >> hauteur;
 			} while (hauteur < 1);
+			// Il faudrait vérifier qu'il n'y ai aucun objet dans les cases enlevés, ou alors supprimer tous les objets à chaque changement de taille
 			d_terrain.ChangerHauteur(hauteur);
 		}
 		else
 		{
-			int largeur;
+			int largeur = 0;
 			do
 			{
 				std::cout << "Entrer la largeur souhaitée : ";
 				std::cin >> largeur;
 			} while (largeur < 1);
+			// Il faudrait vérifier qu'il n'y ai aucun objet dans les cases enlevés, ou alors supprimer tous les objets à chaque changement de taille
 			d_terrain.ChangerLargeur(largeur);
 		}
 		customiserTerrain();
@@ -141,18 +221,42 @@ void jeu::customiserTerrain()
 			std::cout << "Entrer les coordonnées souhaité à modifier : ";
 			std::cin >> x >> y;
 		} while (x < 0 || y < 0);
-		if (d_terrain[x][y] == nullptr)
+		if (d_terrain.Case(x,y) == nullptr) //Affiche une erreur sur le premier [
 		{
-			std::cout << "Case vide : quel objet ajouter ?"
-				/* À finir */
-				/* Il faut que l'utilisateur puissent créer des objets ici puis les placer dans cette case de coordonnées (x,y) */
+			char objet;
+			do
+			{
+				std::cout << "Indiquer le type de l'objet à ajouter :";
+				std::cin >> objet;
+			} while (d_terrain.CaractereInvalide(objet));
+			d_terrain.AjouterObjet(x,y,objet);
 		}
 		else
 		{
-			std::cout << "Case occupé par un objet" << std::endl;
-			std::cout << "Souhaitez-vous le modifier ou le supprimer ?" << std::endl;
-			/* À finir */
-			/* L'utilisateur doit avoir le choix entre le modifier ( robotancien --> robotnouveau ? ) ou le supprimer */
+			int choix2 = 0;
+			do
+			{
+				std::cout << "Case occupé par un objet" << std::endl;
+				std::cout << "Souhaitez-vous le modifier ou le supprimer ?" << std::endl;
+				std::cout << "1 --> Modifier le type de l'objet" << std::endl;
+				std::cout << "2 --> Supprimer l'objet" << std::endl;
+				std::cin >> choix2;
+			} while (choix2 < 1 || choix2 > 2);
+			if (choix2 == 1)
+			{
+				char objet;
+				do
+				{
+					std::cout << "Indiquer le type de l'objet souhaité :";
+					std::cin >> objet;
+				} while (d_terrain.CaractereInvalide(objet));
+				d_terrain.ChangerTypeObjet(x, y, objet);
+			}
+			else
+			{
+				d_terrain.ChangerTypeObjet(x, y, '.');
+				std::cout << "Objet en case de coordonnées (" << x << ',' << y << ") a été supprimé !" << std::endl;
+			}
 		}
 		customiserTerrain();
 		break;
