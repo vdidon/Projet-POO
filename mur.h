@@ -2,7 +2,6 @@
 #define MUR_H
 
 #include "objet.h"
-#include "localisation.h"
 
 class mur : public objet
 {
