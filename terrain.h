@@ -6,6 +6,7 @@
 
 /** Pour ne pas avoir à écrire à chaque fois std::cout << ... mais just cout << ... */
 using std::cout ;
+using std::endl ;
 
 #include <vector>
 

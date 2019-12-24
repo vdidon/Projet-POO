@@ -18,7 +18,7 @@ class objet
         /**
             Méthode pour connaître le type de l'objet (virtuelle)
         */
-        virtual char typeObjet() const ;
+        virtual char typeObjet() const = 0 ;
 
         /**
             Classe permettant de donner un type aux objets

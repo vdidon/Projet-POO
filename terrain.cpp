@@ -1,5 +1,5 @@
 #include "terrain.h"
-using namespace std;
+
 terrain::terrain(int hauteur, int largeur) : d_tableau(hauteur, std::vector <objet*>(largeur))
 {
     for(int i = 0 ; i < hauteur ; i++)
