@@ -11,6 +11,8 @@ class robotPerso : public robot
         virtual ~robotPerso() ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         virtual char typeObjet() const override ;
+        unsigned int get_vitesse() const;
+        bool* get_direction();
 
     private :
 
