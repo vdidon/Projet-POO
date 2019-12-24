@@ -155,10 +155,41 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
     }
 }
 
-
 void terrain::ChangerTypeObjet(int Ligne, int Colonne, const char &NewType)
 {
     Case(Ligne, Colonne)->d_type = NewType ;
+}
+
+int terrain::NombreDeJoueurDeBase() const
+{
+    int NombreJoueurBase = 0 ;
+    for(int i = 0 ; i < hauteur() ; i++)
+    {
+        for(int j = 0 ; j < largeur() ; j++)
+        {
+            if(typeCase(i, j) == objet::TYPES::JOUEUR_BASE)
+            {
+                NombreJoueurBase++ ;
+            }
+        }
+    }
+    return NombreJoueurBase ;
+}
+
+int terrain::NombreDeJoueurExpert() const
+{
+    int NombreJoueurExpert = 0 ;
+    for(int i = 0 ; i < hauteur() ; i++)
+    {
+        for(int j = 0 ; j < largeur() ; j++)
+        {
+            if(typeCase(i, j) == objet::TYPES::JOUEUR_EXPERT)
+            {
+                NombreJoueurExpert++ ;
+            }
+        }
+    }
+    return NombreJoueurExpert ;
 }
 
 void terrain::sauvegarder(const std::string &NomFichier) const
@@ -191,7 +222,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
     std::ifstream f(NomFichier + ".txt") ;
     if(!f)
     {
-        cout << "ERREUR : Impossible de creer le terrain car le fichier " << NomFichier + ".txt" << "n'existe pas" << endl ;
+        cout << "ERREUR : Impossible de creer le terrain car le fichier " << NomFichier + ".txt" << " n'existe pas" << endl ;
         /**
             Efface entièrement le tableau pour renvoyer un terrain vide
         */
@@ -272,4 +303,51 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
     AffichageTerrain() ;
     cout << "qui est le terrain attendu.\n" ;
     return *this ;
+}
+
+bool terrain::TerrainValide() const
+{
+    /** Pour savoir si dans le terrain il y a au moins un joueur et un robot */
+    bool JoueurPresent = false ;
+    bool RobotPresent = false ;
+    for(int i = 0 ; i < hauteur() ; i++)
+    {
+        for(int j = 0 ; j < largeur() ; j++)
+        {
+            if(typeCase(i, j) == objet::TYPES::JOUEUR_BASE || typeCase(i, j) == objet::TYPES::JOUEUR_EXPERT)
+            {
+                JoueurPresent = true ;
+            }
+            if(typeCase(i, j) == objet::TYPES::ROBOT_ANCIEN || typeCase(i, j) == objet::TYPES::ROBOT_NOUVEAU || typeCase(i, j) == objet::TYPES::ROBOT_PERSO)
+            {
+                RobotPresent = true ;
+            }
+        }
+    }
+    if(JoueurPresent)
+    {
+        if(RobotPresent)
+        {
+            cout << "Terrain valide pour le jeu\n" ;
+            return true ;
+        }
+        else
+        {
+            cout << "ERREUR : Terrain sans robot\n" ;
+            return false ;
+        }
+    }
+    else
+    {
+        if(RobotPresent)
+        {
+            cout << "ERREUR : Terrain sans joueur\n" ;
+            return false ;
+        }
+        else
+        {
+            cout << "ERREUR : Terrain sans robot ni joueur\n" ;
+            return false ;
+        }
+    }
 }

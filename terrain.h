@@ -127,6 +127,18 @@ class terrain
         */
         void AjouterObjet(int ligne, int colonne, const char &Type_Objet) ;
 
+        /** fonction permettant de savoir si le terrain est correct, c'est-à-dire qu'il contient au moins
+            ==> 1 joueur (quelque soit son type)
+            ==> 1 robot (quelque soit son type)
+        */
+        bool TerrainValide() const ;
+
+        /** fonction retournant le nombre de joueur de base */
+        int NombreDeJoueurDeBase() const ;
+
+        /** fonction retournant le nombre de joueur expert */
+        int NombreDeJoueurExpert() const ;
+
     private :
 
         std::vector <std::vector <objet*>> d_tableau ;
