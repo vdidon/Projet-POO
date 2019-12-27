@@ -2,11 +2,12 @@
 #define TERRAIN_H
 
 /** Bibliothèque "Standard" pour cout, cin, endl ... */
-#include <iostream>
+#include <iostream> // nécessaire ?
 
 /** Pour ne pas avoir à écrire à chaque fois std::cout << ... mais just cout << ... */
-using std::cout ;
-using std::endl ;
+using std::cout ; // Es vraiment nécessaire dans le .h ou seulement dans le .cpp ?
+using std::endl ; // Les using dans les .h doivent être fais en dernier recours
+				  // Car ça peut modifié le comportement des programes qui importe le .h
 
 #include <vector>
 
