@@ -1,6 +1,6 @@
 #include "jeu.h"
 
-// Classe faisant le jeu et sa partie
+
 jeu::jeu() : d_terrain{}
 {}
 
@@ -33,13 +33,27 @@ void jeu::run()
 	}
 }
 
+
+void jeu::deplacerObjet(int x1, int x2, int y1, int y2, char objet)
+{
+	if (d_terrain.typeCase(x2, y2) == '.')
+	{
+		d_terrain.ChangerTypeObjet(x2, y2, objet);
+		d_terrain.ChangerTypeObjet(x1, y1, '.');
+	}
+	else
+	{
+		d_terrain.ChangerTypeObjet(x2, y2, 'D');
+	}
+}
+
 void jeu::lancerJeu()
 {
 	// Plan de la méthode :
 	/*
 		D'abord vérifier qu'il y a un objet joueur (type quelconque) et au moins un robot
 		Enregistrer la position du joueur pour éviter de devoir la chercher à nouveau
-		Dans la boucle :																									
+		Dans la boucle :
 			Afficher le terrain
 			Demander au joueur de déplacer son objet
 			Déplacer les robots en fonction du joueur
@@ -50,9 +64,8 @@ void jeu::lancerJeu()
 	*/
 	// Ce qu'il reste à faire :
 	/*
-		- Dans la boucle, déplacer le joueurs et les robots, faire les vérifications, et arreter le jeu si besoin
-		- Trouver un meilleur moyen d'entrer dans la boucle avec le bon type de joueur (peut-être inclure un nbTour, et un if (nbTour == 0)
-			qui initialise le type de objetJoueur
+		- Vérifier que cela fonctionne
+		- L'optimiser
 	*/
 	int joueurPresent = 0;
 	int joueurX, joueurY;
@@ -78,8 +91,8 @@ void jeu::lancerJeu()
 		std::cout << "ERREUR : Vérifier que les conditions suivantes soient remplies :" << std::endl;
 		std::cout << "- Il ne doit y avoir qu'un seul objet joueur dans le terrain" << std::endl;
 		std::cout << "- Il doit y avoir au moins un objet robot dans le terrain" << std::endl;
-		std::cout << "Le programme va retourner au menu principal. Appuyer sur une touche pour retourner au menu." << std::endl;
-		//Il faudrait laisser le programme attendre que l'utilisateur entre une touche (getchar() ?)
+		std::cout << "Retour au menu principal" << std::endl;
+		std::cout << std::endl;
 		return;
 	}
 	else
@@ -93,25 +106,158 @@ void jeu::lancerJeu()
 		 * ou mieux
 		 * joueur* objetJoueur = dynamic_cast<joueur *>(d_terrain.Case(joueurX, joueurY))
 		 */
-		if (typeJoueur == 'B')
-		{
-			joueurBase objetJoueur = *d_terrain.Case(joueurX, joueurY); //Visual indique une erreur ici pour d_terrain (objet* vers joueurBase)
-			while (partieFinie == false)
-			{
-				d_terrain.AffichageTerrain();
-				std::cout << std::endl;
 
-				// Déplacer le joueur, puis déplacer les robots, puis vérifications
-			}
-		}
-		else
+		joueur* objetJoueur = dynamic_cast<joueur*>(d_terrain.Case(joueurX, joueurY));
+		while (partieFinie == false)
 		{
-			joueurExpert objetJoueur = *d_terrain.Case(joueurX, joueurY); //idem ici (objet vers joueurExpert)
-			while (partieFinie == false)
+			d_terrain.AffichageTerrain();
+			std::cout << std::endl;
+
+			int x, y;
+			int nbRobotsRestant = 0;
+			std::cout << "Entrer l'incrémentation des coordonnées du joueur en x : ";
+			std::cin >> x;
+			std::cout << "Entrer l'incrémentation des coordonnées du joueur en y : ";
+			std::cin >> y;
+			if (objetJoueur->PeutAllerEn(joueurX + x, joueurY + y))
 			{
-				d_terrain.AffichageTerrain();
+				if (d_terrain.typeCase(joueurX + x, joueurY + y) == '.')
+				{
+					d_terrain.ChangerTypeObjet(joueurX + x, joueurY + y, objetJoueur->typeObjet());
+					d_terrain.ChangerTypeObjet(joueurX, joueurY, '.');
+					joueurX += x;
+					joueurY += y;
+
+					for (int i = 0; i < d_terrain.hauteur(); ++i)
+					{
+						for (int j = 0; j < d_terrain.largeur(); ++i)
+						{
+							if (d_terrain.typeCase(i, j) == 'A' || d_terrain.typeCase(i, j) == 'N' || d_terrain.typeCase(i, j) == 'P')
+							{
+								objet* objetRobot = d_terrain.Case(i, j);
+								nbRobotsRestant++;
+								if (i < joueurX)
+								{
+									if (j < joueurY)
+									{
+										if (objetRobot->PeutAllerEn(i + 1, j + 1))
+										{
+											deplacerObjet(i, j, i + 1, j + 1, objetRobot->typeObjet());
+										}
+										else
+										{
+											if (x - i < y - j)
+											{
+												deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+											}
+											else
+											{
+												deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+											}
+										}
+									}
+									else if (j > joueurY)
+									{
+										if (objetRobot->PeutAllerEn(i + 1, j - 1))
+										{
+											deplacerObjet(i, j, i + 1, j - 1, objetRobot->typeObjet());
+										}
+										else
+										{
+											if (x - i < y - j)
+											{
+												deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+											}
+											else
+											{
+												deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+											}
+										}
+									}
+									else
+									{
+										deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+									}
+								}
+								else if (i > joueurX)
+								{
+									if (j < joueurY)
+									{
+										if (objetRobot->PeutAllerEn(i - 1, j + 1))
+										{
+											deplacerObjet(i, j, i - 1, j + 1, objetRobot->typeObjet());
+										}
+										else
+										{
+											if (x - i < y - j)
+											{
+												deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+											}
+											else
+											{
+												deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+											}
+										}
+									}
+									else if (j > joueurY)
+									{
+										if (objetRobot->PeutAllerEn(i - 1, j - 1))
+										{
+											deplacerObjet(i, j, i - 1, j - 1, objetRobot->typeObjet());
+										}
+										else
+										{
+											if (x - i < y - j)
+											{
+												deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+											}
+											else
+											{
+												deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+											}
+										}
+									}
+									else
+									{
+										deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+									}
+								}
+								else
+								{
+									if (j < joueurY)
+									{
+										deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+									}
+									else
+									{
+										deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+									}
+								}
+							}
+						}
+					}
+				}
+				else
+				{
+					std::cout << std::endl;
+					d_terrain.AffichageTerrain();
+					partieFinie = true;
+					std::cout << "PERDU :(" << std::endl;
+					std::cout << "Details de la défaite :" << std::endl;
+					std::cout << "Le joueur aux coordonnées (" << joueurX << ',' << joueurY << ") est entré dans";
+					std::cout << "l'objet de type [" << d_terrain.typeCase(joueurX + x, joueurY + y) << "] aux coordonnées (" << joueurX + x << ',' << joueurY + y << ")." << std::endl;
+					std::cout << "Retour au menu principal ..." << std::endl;
+					std::cout << std::endl;
+				}
+			}
+			if (nbRobotsRestant == 0)
+			{
 				std::cout << std::endl;
-				// Déplacer le joueur, puis déplacer les robots, puis vérifications
+				d_terrain.AffichageTerrain();
+				std::cout << "GAGNE :D" << std::endl;
+				std::cout << "Il ne reste plus aucun robot sur le terrain." << std::endl;
+				std::cout << "Retour au menu principal ..." << std::endl;
+				std::cout << std::endl;
 			}
 		}
 	}
@@ -168,13 +314,6 @@ void jeu::configuration()
 
 void jeu::customiserTerrain()
 {
-	// À finir
-	/*
-		Ligne [201] et [212] : Si on supprime des cases en mettant une taille plus petite que la taille initiale,
-			les objets concernés par ce changement de taille sont-ils automatiquement supprimé ?
-		Ligne [253] et [257]: Cela permet de créer un objet, mais comment demander à la personne de personnaliser le type robot et joueur perso ?
-	*/
-
 	int choix = INT_MAX;
 	do
 	{
@@ -205,7 +344,6 @@ void jeu::customiserTerrain()
 				std::cout << "Entrer la hauteur souhaitée : ";
 				std::cin >> hauteur;
 			} while (hauteur < 1);
-			// Il faudrait vérifier qu'il n'y ai aucun objet dans les cases enlevés, ou alors supprimer tous les objets à chaque changement de taille
 			d_terrain.ChangerHauteur(hauteur);
 		}
 		else
@@ -216,7 +354,6 @@ void jeu::customiserTerrain()
 				std::cout << "Entrer la largeur souhaitée : ";
 				std::cin >> largeur;
 			} while (largeur < 1);
-			// Il faudrait vérifier qu'il n'y ai aucun objet dans les cases enlevés, ou alors supprimer tous les objets à chaque changement de taille
 			d_terrain.ChangerLargeur(largeur);
 		}
 		customiserTerrain();
@@ -228,7 +365,7 @@ void jeu::customiserTerrain()
 			std::cout << "Entrer les coordonnées souhaité à modifier : ";
 			std::cin >> x >> y;
 		} while (x < 0 || y < 0);
-		if (d_terrain.Case(x,y) == nullptr) //Affiche une erreur sur le premier [
+		if (d_terrain.Case(x, y) == nullptr)
 		{
 			char objet;
 			do
@@ -236,7 +373,7 @@ void jeu::customiserTerrain()
 				std::cout << "Indiquer le type de l'objet à ajouter :";
 				std::cin >> objet;
 			} while (d_terrain.CaractereInvalide(objet));
-			d_terrain.AjouterObjet(x,y,objet);
+			d_terrain.AjouterObjet(x, y, objet);
 		}
 		else
 		{
@@ -268,5 +405,5 @@ void jeu::customiserTerrain()
 		customiserTerrain();
 		break;
 	}
-	
+
 }
