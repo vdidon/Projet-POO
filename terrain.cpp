@@ -6,7 +6,7 @@ terrain::terrain(int hauteur, int largeur) : d_tableau(hauteur, std::vector <obj
     {
         for(int j = 0 ; j < largeur ; j++)
         {
-            AjouterObjet(i, j, '.') ;
+            AjouterObjet(i, j, '.') ; // Pourquoi ne pas remplacer CaseVide par un nullptr ?
         }
     }
 }
@@ -106,7 +106,7 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
     switch(Type_Objet)
     {
         case objet::TYPES::VIDE :
-            ObjetACreer = new CaseVide(Type_Objet) ;
+            ObjetACreer = new CaseVide(Type_Objet) ; // Pourquoi ne pas remplacer CaseVide par un nullptr ?
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
@@ -157,7 +157,8 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
 
 void terrain::ChangerTypeObjet(int Ligne, int Colonne, const char &NewType)
 {
-    Case(Ligne, Colonne)->d_type = NewType ;
+    Case(Ligne, Colonne)->d_type = NewType ; // changer d_type ne suffit pas car la fonction PeutAllerEn ne changera pas
+    // Déplacer le pointeur de l'objet serait peut-être plus judicieux
 }
 
 int terrain::NombreDeJoueurDeBase() const
@@ -192,6 +193,7 @@ int terrain::NombreDeJoueurExpert() const
     return NombreJoueurExpert ;
 }
 
+// A-t-on besoin d'enregistré les cases vides dans le fichier ?
 void terrain::sauvegarder(const std::string &NomFichier) const
 {
     std::ofstream f(NomFichier + ".txt") ;
@@ -226,7 +228,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
         /**
             Efface entièrement le tableau pour renvoyer un terrain vide
         */
-        d_tableau.clear() ;
+        d_tableau.clear() ; // Je ne suis pas sûr que celà delete tous les pointeurs d'objets du terrain
         return *this ;
     }
     int Hauteur, Largeur ;
@@ -234,7 +236,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
     /**
         Efface totalement le tableau représenant le terrain.
     */
-    d_tableau.clear() ;
+    d_tableau.clear() ; // Je ne suis pas sûr que celà delete tous les pointeurs d'objets du terrain
     /**
         Redimentionne le tableau
     */
@@ -284,7 +286,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
                 direct[5] = direction6 ;
                 direct[6] = direction7 ;
                 direct[7] = direction8 ;
-                AjouterObjet(Position_X, Position_Y, Objet) ;
+                AjouterObjet(Position_X, Position_Y, Objet) ; // vitesse et direct sont perdu
                 break ;
 
             case objet::TYPES::VIDE :

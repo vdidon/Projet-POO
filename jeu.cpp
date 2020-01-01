@@ -119,7 +119,7 @@ void jeu::lancerJeu()
 			std::cin >> x;
 			std::cout << "Entrer l'incrémentation des coordonnées du joueur en y : ";
 			std::cin >> y;
-			if (objetJoueur->PeutAllerEn(joueurX + x, joueurY + y))
+			if (objetJoueur->PeutAllerEn(joueurX + x, joueurY + y)) // Les paramètres de la fonction sont les coordonnées relative à la position actuel de l'objet, du coup il faudrait mettre PeutAllerEn(x, y)
 			{
 				if (d_terrain.typeCase(joueurX + x, joueurY + y) == '.')
 				{
