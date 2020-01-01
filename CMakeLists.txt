@@ -23,10 +23,12 @@ add_executable(Projet_POO_git
         robotNouveau.cpp robotNouveau.h
         robotPerso.cpp robotPerso.h
         TestRobotPerso.cpp
+        TestRobotAncien.cpp
+        TestRobotNouveau.cpp
         testDebris.cpp
         testJoueurBase.cpp
         testJoueurExpert.cpp
         testMur.cpp
-        testObjet.cpp
+        TestTerrain.cpp
         mainTestTerrain.cpp
         main.cpp )
