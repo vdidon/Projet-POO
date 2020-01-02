@@ -603,6 +603,14 @@ TEST_CASE("Les opérations diverses sur un terrain sont correctes")
                 t.chargerTerrain("FichierTerrainDimension_CaractereInvalide") ;
             }
         }
+        SUBCASE("Un terrain charge corectement un RobotPerso")
+	    {
+		    t.chargerTerrain("FichierTerrain_RobotPerso");
+		    REQUIRE_EQ(dynamic_cast<robotPerso*>(t.Case(0,0))->get_vitesse(),2);
+		    for (int i = 0; i < 8; ++i) {
+		    	REQUIRE_EQ(dynamic_cast<robotPerso*>(t.Case(0,0))->get_direction()[i],i%2);
+		    }
+	    }
     }
 
     SUBCASE("Un terrain est valide pour le jeu")
