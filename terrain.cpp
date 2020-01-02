@@ -6,7 +6,7 @@ terrain::terrain(int hauteur, int largeur) : d_tableau(hauteur, std::vector <obj
     {
         for(int j = 0 ; j < largeur ; j++)
         {
-            AjouterObjet(i, j, '.') ; // Pourquoi ne pas remplacer CaseVide par un nullptr ?
+            AjouterObjet(i, j, '.') ;
         }
     }
 }
@@ -106,7 +106,7 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
     switch(Type_Objet)
     {
         case objet::TYPES::VIDE :
-            ObjetACreer = new CaseVide(Type_Objet) ; // Pourquoi ne pas remplacer CaseVide par un nullptr ?
+            ObjetACreer = new CaseVide(Type_Objet) ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
@@ -157,8 +157,7 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
 
 void terrain::ChangerTypeObjet(int Ligne, int Colonne, const char &NewType)
 {
-    Case(Ligne, Colonne)->d_type = NewType ; // changer d_type ne suffit pas car la fonction PeutAllerEn ne changera pas
-    // Déplacer le pointeur de l'objet serait peut-être plus judicieux
+    Case(Ligne, Colonne)->d_type = NewType ;
 }
 
 int terrain::NombreDeJoueurDeBase() const
@@ -193,7 +192,6 @@ int terrain::NombreDeJoueurExpert() const
     return NombreJoueurExpert ;
 }
 
-// A-t-on besoin d'enregistré les cases vides dans le fichier ?
 void terrain::sauvegarder(const std::string &NomFichier) const
 {
     std::ofstream f(NomFichier + ".txt") ;
@@ -228,7 +226,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
         /**
             Efface entièrement le tableau pour renvoyer un terrain vide
         */
-        d_tableau.clear() ; // Je ne suis pas sûr que celà delete tous les pointeurs d'objets du terrain
+        d_tableau.clear() ;
         return *this ;
     }
     int Hauteur, Largeur ;
@@ -236,7 +234,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
     /**
         Efface totalement le tableau représenant le terrain.
     */
-    d_tableau.clear() ; // Je ne suis pas sûr que celà delete tous les pointeurs d'objets du terrain
+    d_tableau.clear() ;
     /**
         Redimentionne le tableau
     */
