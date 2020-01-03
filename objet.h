@@ -13,7 +13,7 @@ class objet
         /**
             Méthode pour savoir si l'objet peut être déplacer (virtuelle)
         */
-        virtual bool PeutAllerEn(int dx, int dy) const = 0 ; // Renommer en PeutAllerDe ? ça évitera les ambiguités
+        virtual bool PeutAllerEn(int dx, int dy) const = 0 ;
 
         /**
             Méthode pour connaître le type de l'objet (virtuelle)

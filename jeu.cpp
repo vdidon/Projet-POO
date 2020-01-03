@@ -99,14 +99,6 @@ void jeu::lancerJeu()
 	{
 		bool partieFinie = false;
 		char typeJoueur = d_terrain.typeCase(joueurX, joueurY);
-		/*
-		 * Pourquoi différencier les 2 cas ? (fonction PeutAllerEn(int dx, int dy))
-		 * Proposition :
-		 * objet* objetJoueur = d_terrain.Case(joueurX, joueurY)
-		 * ou mieux
-		 * joueur* objetJoueur = dynamic_cast<joueur *>(d_terrain.Case(joueurX, joueurY))
-		 */
-
 		joueur* objetJoueur = dynamic_cast<joueur*>(d_terrain.Case(joueurX, joueurY));
 		while (partieFinie == false)
 		{
