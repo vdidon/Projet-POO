@@ -208,7 +208,7 @@ TEST_CASE("Les valeurs du terrain sont correctes")
         }
     }
 
-    SUBCASE("Le changement du type de la case, donc de l'objet est correct")
+    /*SUBCASE("Le changement du type de la case, donc de l'objet est correct")
     {
         SUBCASE("Sur un terrain ne contenant que des cases vides, en changeant une case vide en objet")
         {
@@ -295,8 +295,8 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 REQUIRE_EQ(t.typeCase(1, 1), 'D') ;
             }
             */
-        }
-    }
+        //}
+    //}
 }
 
 TEST_CASE("L'affichage d'un terrain est correct")
