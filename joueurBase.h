@@ -8,7 +8,7 @@ class joueurBase : public joueur
 {
     public :
 
-        joueurBase(const char &Type_Joueur_Base) ;
+        joueurBase(const char &Type_Joueur_Base = objet::TYPES::JOUEUR_BASE) ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         virtual char typeObjet() const override ;
 
