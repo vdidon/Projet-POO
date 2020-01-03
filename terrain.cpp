@@ -103,10 +103,10 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
         cout << "==> ERREUR DE CREATION : un caractere non valide qui est " << Type_Objet << " voulant etre creer en position (" << ligne << ", " << colonne << ") ne correspond a aucun objet.\n" ;
         cout << "--> Les seuls objets possibles sont representes par : " << objet::TYPES::DEBRIS << " (debris), " << objet::TYPES::JOUEUR_BASE << " (Joueur de base), " << objet::TYPES::JOUEUR_EXPERT << " (Joueur Expert), " << objet::TYPES::MUR << " (Mur), " << objet::TYPES::ROBOT_ANCIEN << " (Robot 1ere generation), " << objet::TYPES::ROBOT_NOUVEAU << " (Robot de 2e generation), " << objet::TYPES::ROBOT_PERSO << " (Robot Personnalisable (+ ses caracteristiques)) et " << objet::TYPES::VIDE << " (Case vide)" ;
     }
-    else
+    /*else
     {
-	    delete d_tableau[ligne][colonne];
-    }
+	    delete d_tableau[ligne][colonne] ;
+    }*/ // POURQUOI ???
     switch(Type_Objet)
     {
         case objet::TYPES::VIDE :
@@ -157,43 +157,6 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
                 cout << "Erreur, les seuls objets possibles sont representes par : " << objet::TYPES::DEBRIS << " (debris), " << objet::TYPES::JOUEUR_BASE << " (Joueur de base), " << objet::TYPES::JOUEUR_EXPERT << " (Joueur Expert), " << objet::TYPES::MUR << " (Mur), " << objet::TYPES::ROBOT_ANCIEN << " (Robot 1ere generation), " << objet::TYPES::ROBOT_NOUVEAU << " (Robot de 2e generation), " << objet::TYPES::ROBOT_PERSO << " (Robot Personnalisable (+ ses caracteristiques)) et " << objet::TYPES::VIDE << " (Case vide)" ;
             }
     }
-}
-
-/*void terrain::ChangerTypeObjet(int Ligne, int Colonne, const char &NewType)
-{
-    Case(Ligne, Colonne)->d_type = NewType ;
-}*/
-
-int terrain::NombreDeJoueurDeBase() const
-{
-    int NombreJoueurBase = 0 ;
-    for(int i = 0 ; i < hauteur() ; i++)
-    {
-        for(int j = 0 ; j < largeur() ; j++)
-        {
-            if(typeCase(i, j) == objet::TYPES::JOUEUR_BASE)
-            {
-                NombreJoueurBase++ ;
-            }
-        }
-    }
-    return NombreJoueurBase ;
-}
-
-int terrain::NombreDeJoueurExpert() const
-{
-    int NombreJoueurExpert = 0 ;
-    for(int i = 0 ; i < hauteur() ; i++)
-    {
-        for(int j = 0 ; j < largeur() ; j++)
-        {
-            if(typeCase(i, j) == objet::TYPES::JOUEUR_EXPERT)
-            {
-                NombreJoueurExpert++ ;
-            }
-        }
-    }
-    return NombreJoueurExpert ;
 }
 
 void terrain::sauvegarder(const std::string &NomFichier) const
@@ -290,7 +253,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
                 direct[5] = direction6 ;
                 direct[6] = direction7 ;
                 direct[7] = direction8 ;
-                AjouterObjet(Position_X, Position_Y, Objet) ; // vitesse et direct sont perdu
+                AjouterObjet(Position_X, Position_Y, Objet) ;
                 break ;
 
             case objet::TYPES::VIDE :
@@ -312,75 +275,32 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
     return *this ;
 }
 
-bool terrain::TerrainValide() const
+void terrain::viderLeTerrain()
 {
-    /** Pour savoir si dans le terrain il y a au moins un joueur et un robot */
-    bool JoueurPresent = false ;
-    bool RobotPresent = false ;
-    for(int i = 0 ; i < hauteur() ; i++)
+	for(int i = 0 ; i < hauteur() ; i++)
     {
-        for(int j = 0 ; j < largeur() ; j++)
+		for(int j = 0 ; j < largeur() ; j++)
         {
-            if(typeCase(i, j) == objet::TYPES::JOUEUR_BASE || typeCase(i, j) == objet::TYPES::JOUEUR_EXPERT)
-            {
-                JoueurPresent = true ;
-            }
-            if(typeCase(i, j) == objet::TYPES::ROBOT_ANCIEN || typeCase(i, j) == objet::TYPES::ROBOT_NOUVEAU || typeCase(i, j) == objet::TYPES::ROBOT_PERSO)
-            {
-                RobotPresent = true ;
-            }
-        }
-    }
-    if(JoueurPresent)
-    {
-        if(RobotPresent)
-        {
-            cout << "Terrain valide pour le jeu\n" ;
-            return true ;
-        }
-        else
-        {
-            cout << "ERREUR : Terrain sans robot\n" ;
-            return false ;
-        }
-    }
-    else
-    {
-        if(RobotPresent)
-        {
-            cout << "ERREUR : Terrain sans joueur\n" ;
-            return false ;
-        }
-        else
-        {
-            cout << "ERREUR : Terrain sans robot ni joueur\n" ;
-            return false ;
-        }
-    }
-}
-
-void terrain::viderLeTerrain() {
-	for (int i = 0; i < hauteur(); ++i) {
-		for (int j = 0; j < largeur(); ++j) {
-			delete d_tableau[i][j];
+			delete d_tableau[i][j] ;
 		}
 	}
 }
 
-void terrain::deplacerObjet(int x1, int y1, int x2, int y2) {
-	if(d_tableau[y2][x2]->d_type==objet::TYPES::VIDE)
+void terrain::deplacerObjet(int x1, int y1, int x2, int y2)
+{
+	if(d_tableau[y2][x2]->d_type == objet::TYPES::VIDE)
 	{
 		/** Echange les pointeurs */
-		objet* tmp = d_tableau[y1][x1];
-		d_tableau[y1][x1]=d_tableau[y2][x2];
-		d_tableau[y2][x2]=tmp;
+		objet* tmp = d_tableau[y1][x1] ;
+		d_tableau[y1][x1] = d_tableau[y2][x2] ;
+		d_tableau[y2][x2] = tmp ;
 	}
 	else
 	{
 		/** Colision entre 2 objets */
-		delete d_tableau[y1][x1];
-		delete d_tableau[y2][x2];
-		d_tableau[y1][x1] = new CaseVide;
-		d_tableau[y2][x2] = new debris;
+		delete d_tableau[y1][x1] ;
+		delete d_tableau[y2][x2] ;
+		d_tableau[y1][x1] = new CaseVide ;
+		d_tableau[y2][x2] = new debris ;
 	}
 }

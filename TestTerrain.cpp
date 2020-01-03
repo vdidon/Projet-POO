@@ -212,7 +212,7 @@ TEST_CASE("Les valeurs du terrain sont correctes")
     {
         SUBCASE("Sur un terrain ne contenant que des cases vides, en changeant une case vide en objet")
         {
-            int IndiceLigneCaseChangee = 0, IndiceColonneCaseChangee = 1 ;
+            /*int IndiceLigneCaseChangee = 0, IndiceColonneCaseChangee = 1 ;
 
             t.ChangerTypeObjet(IndiceLigneCaseChangee, IndiceColonneCaseChangee, 'P') ;
             REQUIRE_EQ(t.typeCase(IndiceLigneCaseChangee, IndiceColonneCaseChangee), 'P') ;
@@ -223,19 +223,28 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 {
                     REQUIRE_EQ(t.typeCase(i, j), '.') ;
                 }
-            }
+            }*/
         }
 
         SUBCASE("Sur un terrain contenant un ou plusieurs objets")
         {
             SUBCASE("Sur un terrain avec 1 objet dont on va changer le type et le reste que des cases vides")
             {
+                /** Ajout d'un premier objet pour change son type */
                 int IndiceLigneCaseAjoutObjet = 0, IndiceColonneCaseAjoutObjet = 0 ;
 
                 t.AjouterObjet(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet, 'M') ;
                 REQUIRE_EQ(t.typeCase(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet), 'M') ;
 
-                t.ChangerTypeObjet(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet, 'P') ;
+                /** Indice de la case à chercher pour changer le type
+                    c'est-à-dire que la case où on a ajouté l'objet aura le type de cette case
+                */
+                int IndiceLigneCaseObjetRemplacant = 0, IndiceColonneCaseObjetRemplacant = 1 ;
+
+                t.ChangerTypeObjet(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet, IndiceLigneCaseObjetRemplacant, IndiceColonneCaseObjetRemplacant) ;
+
+                t.AffichageTerrain() ;
+                /*t.ChangerTypeObjet(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet, 'P') ;
                 REQUIRE_EQ(t.typeCase(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet), 'P') ;
 
                 for(int i = 0 ; i < t.hauteur() ; i++)
@@ -244,9 +253,9 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                     {
                         REQUIRE_EQ(t.typeCase(i, j), '.') ;
                     }
-                }
+                }*/
             }
-
+/*
             SUBCASE("Sur un terrain avec 2 ou plus d'objets (Nombre inférieur à la taille du terrain) dont on va changer le type et le reste des cases vides (on a au moins 1 case vide)")
             {
                 int IndiceLigneCaseAjoutObjet1 = 0, IndiceColonneCaseAjoutObjet1 = 0 ;
@@ -271,7 +280,6 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 }
             }
 
-            /**
             SUBCASE("Sur un terrain ne contenant que des objets") // Comprends plus pourquoi change plus le type
             {
                 t.AjouterObjet(0, 0, 'M') ;
@@ -362,6 +370,11 @@ TEST_CASE("L'affichage d'un terrain est correct")
 
 TEST_CASE("Les opérations diverses sur un terrain sont correctes")
 {
+    SUBCASE("Vider le terrain est correct")
+    {
+
+    }
+
     SUBCASE("La création d'un nouveau terrain grâce à un ancien est correct")
     {
         SUBCASE("A Partir d'un terrain construit par défaut est correct")
@@ -602,117 +615,6 @@ TEST_CASE("Les opérations diverses sur un terrain sont correctes")
             {
                 t.chargerTerrain("FichierTerrainDimension_CaractereInvalide") ;
             }
-        }
-        SUBCASE("Un terrain charge corectement un RobotPerso")
-	    {
-		    t.chargerTerrain("FichierTerrain_RobotPerso");
-		    REQUIRE_EQ(dynamic_cast<robotPerso*>(t.Case(0,0))->get_vitesse(),2);
-		    for (int i = 0; i < 8; ++i) {
-		    	REQUIRE_EQ(dynamic_cast<robotPerso*>(t.Case(0,0))->get_direction()[i],i%2);
-		    }
-	    }
-    }
-
-    SUBCASE("Un terrain est valide pour le jeu")
-    {
-        /** La case vide représente une case vide dans le terrain, mais dans cette partie de test on peut le considérer comme tout les caractères différents des joueurs et/ou robots selon la cas étié */
-
-        int hauteur = 2, largeur = 2 ;
-        terrain t{hauteur, largeur} ;
-
-        SUBCASE("Un terrain ne contenant aucun objet du type robot ou joueur n'est pas un terrain de jeu")
-        {
-            REQUIRE_EQ(t.TerrainValide(), false) ;
-        }
-
-        SUBCASE("Un terrain contenant un ou plusieurs robot(s) et le reste sont des objet(s) de différents types que joueur n'est pas un terrain de jeu")
-        {
-            SUBCASE("Un terrain avec 1 robot de 1ere génération et des cases vides (voir remarque en haut) n'est pas un terrain de jeu")
-            {
-                t.AjouterObjet(0, 0, 'A') ;
-                REQUIRE_EQ(t.TerrainValide(), false) ;
-            }
-
-            SUBCASE("Un terrain avec 1 robot de 2e génération et des cases vides (voir remarque en haut) n'est pas un terrain de jeu")
-            {
-                t.AjouterObjet(0, 0, 'N') ;
-                REQUIRE_EQ(t.TerrainValide(), false) ;
-            }
-
-            SUBCASE("Un terrain avec 1 robot personnalisable et des cases vides (voir remarque en haut) n'est pas un terrain de jeu")
-            {
-                t.AjouterObjet(0, 0, 'P') ;
-                REQUIRE_EQ(t.TerrainValide(), false) ;
-            }
-
-            SUBCASE("Un terrain avec 3 robots : 1 de 1ere génération, 1 de 2e génération et 1 personnalisable et des cases vides (voir remarque en haut) n'est pas un terrain de jeu")
-            {
-                t.AjouterObjet(0, 0, 'A') ;
-                t.AjouterObjet(0, 1, 'N') ;
-                t.AjouterObjet(1, 0, 'P') ;
-                REQUIRE_EQ(t.TerrainValide(), false) ;
-            }
-        }
-
-        SUBCASE("Un terrain contenant un ou plusieurs joueur(s) et le reste sont des objet(s) de différents types que robots n'est pas un terrain de jeu")
-        {
-            SUBCASE("Un terrain avec 1 joueur de base et des cases vides (voir remarque en haut) n'est pas un terrain de jeu")
-            {
-                t.AjouterObjet(0, 0, 'B') ;
-                REQUIRE_EQ(t.TerrainValide(), false) ;
-            }
-
-            SUBCASE("Un terrain avec 1 joueur expert et des cases vides (voir remarque en haut) n'est pas un terrain de jeu")
-            {
-                t.AjouterObjet(0, 0, 'E') ;
-                REQUIRE_EQ(t.TerrainValide(), false) ;
-            }
-
-            SUBCASE("Un terrain avec 2 joueurs : 1 de base et 1 expert et des cases vides (voir remarque en haut) n'est pas un terrain de jeu")
-            {
-                t.AjouterObjet(0, 0, 'B') ;
-                t.AjouterObjet(0, 1, 'E') ;
-                REQUIRE_EQ(t.TerrainValide(), false) ;
-            }
-        }
-
-        SUBCASE("Un terrain ayant au moins un joueur (quelque soit son type) et au moins un robot (quelque soit son type) est un terrain de jeu")
-        {
-            t.AjouterObjet(0, 0, 'B') ;
-            t.AjouterObjet(0, 1, 'A') ;
-            REQUIRE_EQ(t.TerrainValide(), true) ;
-        }
-    }
-
-    SUBCASE("Le nombre de joueur est correct")
-    {
-        int hauteur = 2, largeur = 2 ;
-        terrain t{hauteur, largeur} ;
-
-        SUBCASE("Dans un terrain vide")
-        {
-            REQUIRE_EQ(t.NombreDeJoueurDeBase(), 0) ;
-            REQUIRE_EQ(t.NombreDeJoueurExpert(), 0) ;
-        }
-
-        SUBCASE("Le nombre de joueur de base est correct")
-        {
-            t.AjouterObjet(0, 0, 'B') ;
-            REQUIRE_EQ(t.NombreDeJoueurDeBase(), 1) ;
-        }
-
-        SUBCASE("Le nombre de joueur de base est correct")
-        {
-            t.AjouterObjet(0, 0, 'E') ;
-            REQUIRE_EQ(t.NombreDeJoueurExpert(), 1) ;
-        }
-
-        SUBCASE("Le nombre de joueurs est correct")
-        {
-            t.AjouterObjet(0, 0, 'B') ;
-            t.AjouterObjet(0, 1, 'E') ;
-            REQUIRE_EQ(t.NombreDeJoueurDeBase(), 1) ;
-            REQUIRE_EQ(t.NombreDeJoueurExpert(), 1) ;
         }
     }
 }

@@ -2,10 +2,10 @@
 #define TERRAIN_H
 
 /** Bibliothèque "Standard" pour cout, cin, endl ... */
-#include <iostream> // nécessaire ? OUI
+#include <iostream>
 
 /** Pour ne pas avoir à écrire à chaque fois std::cout << ... mais just cout << ... */
-using std::cout ; // Dans le .cpp on utilise le .h donc c'est mieux ici
+using std::cout ;
 using std::endl ;
 
 #include <vector>
@@ -115,45 +115,26 @@ class terrain
         */
         char typeCase(int lig, int col) const ;
 
-        /** Procédure permettant de changer le type d'un objet du terrain
-            @param Ligne - la ligne de la case du type de l'objet à changer
-            @param Colonne - la colonne de la case du type de l'objet à changer
-        */
-        //void ChangerTypeObjet(int Ligne, int Colonne, const char &NewType) ;
-
         /** Procédure permettant d'ajouter un objet dans le terrain
             @param ligne - la ligne de la case du type de l'objet à changer
             @param colonne - la colonne de la case du type de l'objet à changer
         */
         void AjouterObjet(int ligne, int colonne, const char &Type_Objet) ;
 
-		/**
-		Permet de déplacer un objet de coordonnées (x1,y1) en (x2,y2)
-		@param x1 - Coordonnées x de départ de l'objet
-		@param y1 - Coordonnées y de départ de l'objet
-		@param x2 - Coordonnées x d'arrivé de l'objet
-		@param y2 - Coordonnées y d'arrivé de l'objet
+		/** Permet de déplacer un objet de coordonnées (x1, y1) en (x2, y2)
+            @param x1 - Coordonnées x de départ de l'objet
+            @param y1 - Coordonnées y de départ de l'objet
+            @param x2 - Coordonnées x d'arrivée de l'objet
+            @param y2 - Coordonnées y d'arrivée de l'objet
 		*/
-		void deplacerObjet(int x1, int y1, int x2, int y2);
-
-        /** fonction permettant de savoir si le terrain est correct, c'est-à-dire qu'il contient au moins
-            ==> 1 joueur (quelque soit son type)
-            ==> 1 robot (quelque soit son type)
-        */
-        bool TerrainValide() const ;
-
-        /** fonction retournant le nombre de joueur de base */
-        int NombreDeJoueurDeBase() const ;
-
-        /** fonction retournant le nombre de joueur expert */
-        int NombreDeJoueurExpert() const ;
+		void deplacerObjet(int x1, int y1, int x2, int y2) ;
 
     private :
 
         std::vector <std::vector <objet*>> d_tableau ;
 
         /** Procédure permettant supprimer tous les objets du terrain */
-        void viderLeTerrain();
+        void viderLeTerrain() ;
 };
 
 #endif // TERRAIN_H
