@@ -94,6 +94,11 @@ bool terrain::CaractereInvalide(const char &TypeObjet) const
     return (TypeObjet != objet::TYPES::DEBRIS && TypeObjet != objet::TYPES::JOUEUR_BASE && TypeObjet != objet::TYPES::JOUEUR_EXPERT && TypeObjet != objet::TYPES::MUR && TypeObjet != objet::TYPES::ROBOT_ANCIEN && TypeObjet != objet::TYPES::ROBOT_NOUVEAU && TypeObjet != objet::TYPES::ROBOT_PERSO && TypeObjet != objet::TYPES::VIDE) ;
 }
 
+void terrain::AjouterRobotPerso(int Ligne, int Colonne, int Vitesse, bool Direction[8], const char &CaractereRobot)
+{
+    d_tableau[Ligne][Colonne] = new robotPerso(Vitesse, Direction, CaractereRobot) ;
+}
+
 void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
 {
     objet *ObjetACreer ;
@@ -147,8 +152,8 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
         case objet::TYPES::ROBOT_PERSO :
             int vitesseDeplacement ;
             bool direct[8] ;
-            ObjetACreer = new robotPerso(vitesseDeplacement, direct, Type_Objet) ;
-            d_tableau[ligne][colonne] = ObjetACreer ;
+            AjouterRobotPerso(ligne, colonne, vitesseDeplacement, direct, Type_Objet) ;
+            //d_tableau[ligne][colonne] = ObjetACreer ;
 
         /** Autre cas si un robot customisable est dans le terrain pour éviter d'afficher une erreur qui n'existe pas */
         default :
@@ -253,7 +258,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
                 direct[5] = direction6 ;
                 direct[6] = direction7 ;
                 direct[7] = direction8 ;
-                AjouterObjet(Position_X, Position_Y, Objet) ;
+                AjouterRobotPerso(Position_X, Position_Y, vitesse, direct, Objet) ;
                 break ;
 
             case objet::TYPES::VIDE :
@@ -300,7 +305,7 @@ void terrain::deplacerObjet(int x1, int y1, int x2, int y2)
 		/** Colision entre 2 objets */
 		delete d_tableau[y1][x1] ;
 		delete d_tableau[y2][x2] ;
-		d_tableau[y1][x1] = new CaseVide ;
-		d_tableau[y2][x2] = new debris ;
+		d_tableau[y1][x1] = new CaseVide() ;
+		d_tableau[y2][x2] = new debris() ;
 	}
 }
