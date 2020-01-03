@@ -119,13 +119,22 @@ class terrain
             @param Ligne - la ligne de la case du type de l'objet à changer
             @param Colonne - la colonne de la case du type de l'objet à changer
         */
-        void ChangerTypeObjet(int Ligne, int Colonne, const char &NewType) ;
+        //void ChangerTypeObjet(int Ligne, int Colonne, const char &NewType) ;
 
         /** Procédure permettant d'ajouter un objet dans le terrain
             @param ligne - la ligne de la case du type de l'objet à changer
             @param colonne - la colonne de la case du type de l'objet à changer
         */
         void AjouterObjet(int ligne, int colonne, const char &Type_Objet) ;
+
+		/**
+		Permet de déplacer un objet de coordonnées (x1,y1) en (x2,y2)
+		@param x1 - Coordonnées x de départ de l'objet
+		@param y1 - Coordonnées y de départ de l'objet
+		@param x2 - Coordonnées x d'arrivé de l'objet
+		@param y2 - Coordonnées y d'arrivé de l'objet
+		*/
+		void deplacerObjet(int x1, int y1, int x2, int y2);
 
         /** fonction permettant de savoir si le terrain est correct, c'est-à-dire qu'il contient au moins
             ==> 1 joueur (quelque soit son type)

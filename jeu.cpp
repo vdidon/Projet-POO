@@ -34,7 +34,7 @@ void jeu::run()
 }
 
 
-void jeu::deplacerObjet(int x1, int x2, int y1, int y2, char objet)
+/*void jeu::deplacerObjet(int x1, int x2, int y1, int y2, char objet)
 {
 	if (d_terrain.typeCase(x2, y2) == '.')
 	{
@@ -45,7 +45,7 @@ void jeu::deplacerObjet(int x1, int x2, int y1, int y2, char objet)
 	{
 		d_terrain.ChangerTypeObjet(x2, y2, 'D');
 	}
-}
+}*/
 
 void jeu::lancerJeu()
 {
@@ -123,8 +123,9 @@ void jeu::lancerJeu()
 			{
 				if (d_terrain.typeCase(joueurX + x, joueurY + y) == '.')
 				{
-					d_terrain.ChangerTypeObjet(joueurX + x, joueurY + y, objetJoueur->typeObjet());
-					d_terrain.ChangerTypeObjet(joueurX, joueurY, '.');
+					//d_terrain.ChangerTypeObjet(joueurX + x, joueurY + y, objetJoueur->typeObjet());
+					//d_terrain.ChangerTypeObjet(joueurX, joueurY, '.');
+					d_terrain.deplacerObjet(joueurX, joueurY,joueurX + x, joueurY + y);
 					joueurX += x;
 					joueurY += y;
 
@@ -142,17 +143,20 @@ void jeu::lancerJeu()
 									{
 										if (objetRobot->PeutAllerEn(i + 1, j + 1))
 										{
-											deplacerObjet(i, j, i + 1, j + 1, objetRobot->typeObjet());
+											//deplacerObjet(i, j, i + 1, j + 1, objetRobot->typeObjet());
+											d_terrain.deplacerObjet(i, j, i + 1, j + 1);
 										}
 										else
 										{
 											if (x - i < y - j)
 											{
-												deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i + 1, j);
 											}
 											else
 											{
-												deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i, j + 1);
 											}
 										}
 									}
@@ -160,23 +164,27 @@ void jeu::lancerJeu()
 									{
 										if (objetRobot->PeutAllerEn(i + 1, j - 1))
 										{
-											deplacerObjet(i, j, i + 1, j - 1, objetRobot->typeObjet());
+											//deplacerObjet(i, j, i + 1, j - 1, objetRobot->typeObjet());
+											d_terrain.deplacerObjet(i, j, i + 1, j - 1);
 										}
 										else
 										{
 											if (x - i < y - j)
 											{
-												deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i + 1, j);
 											}
 											else
 											{
-												deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i, j - 1);
 											}
 										}
 									}
 									else
 									{
-										deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+										//deplacerObjet(i, j, i + 1, j, objetRobot->typeObjet());
+										d_terrain.deplacerObjet(i, j, i + 1, j);
 									}
 								}
 								else if (i > joueurX)
@@ -185,17 +193,20 @@ void jeu::lancerJeu()
 									{
 										if (objetRobot->PeutAllerEn(i - 1, j + 1))
 										{
-											deplacerObjet(i, j, i - 1, j + 1, objetRobot->typeObjet());
+											//deplacerObjet(i, j, i - 1, j + 1, objetRobot->typeObjet());
+											d_terrain.deplacerObjet(i, j, i - 1, j + 1);
 										}
 										else
 										{
 											if (x - i < y - j)
 											{
-												deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i - 1, j);
 											}
 											else
 											{
-												deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i, j + 1);
 											}
 										}
 									}
@@ -203,34 +214,40 @@ void jeu::lancerJeu()
 									{
 										if (objetRobot->PeutAllerEn(i - 1, j - 1))
 										{
-											deplacerObjet(i, j, i - 1, j - 1, objetRobot->typeObjet());
+											//deplacerObjet(i, j, i - 1, j - 1, objetRobot->typeObjet());
+											d_terrain.deplacerObjet(i, j, i - 1, j - 1);
 										}
 										else
 										{
 											if (x - i < y - j)
 											{
-												deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i - 1, j);
 											}
 											else
 											{
-												deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+												//deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+												d_terrain.deplacerObjet(i, j, i, j - 1);
 											}
 										}
 									}
 									else
 									{
-										deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+										//deplacerObjet(i, j, i - 1, j, objetRobot->typeObjet());
+										d_terrain.deplacerObjet(i, j, i - 1, j);
 									}
 								}
 								else
 								{
 									if (j < joueurY)
 									{
-										deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+										//deplacerObjet(i, j, i, j + 1, objetRobot->typeObjet());
+										d_terrain.deplacerObjet(i, j, i, j + 1);
 									}
 									else
 									{
-										deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+										//deplacerObjet(i, j, i, j - 1, objetRobot->typeObjet());
+										d_terrain.deplacerObjet(i, j, i, j - 1);
 									}
 								}
 							}
@@ -394,11 +411,13 @@ void jeu::customiserTerrain()
 					std::cout << "Indiquer le type de l'objet souhaité :";
 					std::cin >> objet;
 				} while (d_terrain.CaractereInvalide(objet));
-				d_terrain.ChangerTypeObjet(x, y, objet);
+				//d_terrain.ChangerTypeObjet(x, y, objet);
+				d_terrain.AjouterObjet(y,x,objet);
 			}
 			else
 			{
-				d_terrain.ChangerTypeObjet(x, y, '.');
+				//d_terrain.ChangerTypeObjet(x, y, '.');
+				d_terrain.AjouterObjet(y,x,objet::TYPES::VIDE);
 				std::cout << "Objet en case de coordonnées (" << x << ',' << y << ") a été supprimé !" << std::endl;
 			}
 		}

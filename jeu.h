@@ -32,7 +32,7 @@ private:
 	@param x2 - Coordonnées x d'arrivé de l'objet
 	@param y2 - Coordonnées y d'arrivé de l'objet
 	*/
-	void deplacerObjet(int x1, int y1, int x2, int y2, char objet);
+	//void deplacerObjet(int x1, int y1, int x2, int y2, char objet);
 
 	/**
 	Lance une partie de jeu

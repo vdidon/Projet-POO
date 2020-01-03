@@ -103,6 +103,10 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
         cout << "==> ERREUR DE CREATION : un caractere non valide qui est " << Type_Objet << " voulant etre creer en position (" << ligne << ", " << colonne << ") ne correspond a aucun objet.\n" ;
         cout << "--> Les seuls objets possibles sont representes par : " << objet::TYPES::DEBRIS << " (debris), " << objet::TYPES::JOUEUR_BASE << " (Joueur de base), " << objet::TYPES::JOUEUR_EXPERT << " (Joueur Expert), " << objet::TYPES::MUR << " (Mur), " << objet::TYPES::ROBOT_ANCIEN << " (Robot 1ere generation), " << objet::TYPES::ROBOT_NOUVEAU << " (Robot de 2e generation), " << objet::TYPES::ROBOT_PERSO << " (Robot Personnalisable (+ ses caracteristiques)) et " << objet::TYPES::VIDE << " (Case vide)" ;
     }
+    else
+    {
+	    delete d_tableau[ligne][colonne];
+    }
     switch(Type_Objet)
     {
         case objet::TYPES::VIDE :
@@ -155,10 +159,10 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
     }
 }
 
-void terrain::ChangerTypeObjet(int Ligne, int Colonne, const char &NewType)
+/*void terrain::ChangerTypeObjet(int Ligne, int Colonne, const char &NewType)
 {
     Case(Ligne, Colonne)->d_type = NewType ;
-}
+}*/
 
 int terrain::NombreDeJoueurDeBase() const
 {
@@ -360,5 +364,23 @@ void terrain::viderLeTerrain() {
 		for (int j = 0; j < largeur(); ++j) {
 			delete d_tableau[i][j];
 		}
+	}
+}
+
+void terrain::deplacerObjet(int x1, int y1, int x2, int y2) {
+	if(d_tableau[y2][x2]->d_type==objet::TYPES::VIDE)
+	{
+		/** Echange les pointeurs */
+		objet* tmp = d_tableau[y1][x1];
+		d_tableau[y1][x1]=d_tableau[y2][x2];
+		d_tableau[y2][x2]=tmp;
+	}
+	else
+	{
+		/** Colision entre 2 objets */
+		delete d_tableau[y1][x1];
+		delete d_tableau[y2][x2];
+		d_tableau[y1][x1] = new CaseVide;
+		d_tableau[y2][x2] = new debris;
 	}
 }
