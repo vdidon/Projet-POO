@@ -8,7 +8,7 @@ include_directories(DOC_TEST)
 include_directories(winbgi)
 
 add_executable(Projet_POO_git
-        DOC_TEST/doctest.h
+        doctest.h
         winbgi/CodeBlocks/graphics.h winbgi/CodeBlocks/winbgi.cpp
         debris.cpp debris.h
         jeu.cpp jeu.h
