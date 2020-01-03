@@ -142,6 +142,9 @@ class terrain
     private :
 
         std::vector <std::vector <objet*>> d_tableau ;
+
+        /** Procédure permettant supprimer tous les objets du terrain */
+        void viderLeTerrain();
 };
 
 #endif // TERRAIN_H

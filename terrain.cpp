@@ -226,7 +226,8 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
         /**
             Efface entièrement le tableau pour renvoyer un terrain vide
         */
-        d_tableau.clear() ;
+        viderLeTerrain() ;
+		d_tableau.clear() ;
         return *this ;
     }
     int Hauteur, Largeur ;
@@ -234,7 +235,8 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
     /**
         Efface totalement le tableau représenant le terrain.
     */
-    d_tableau.clear() ;
+    viderLeTerrain() ;
+	d_tableau.clear() ;
     /**
         Redimentionne le tableau
     */
@@ -294,7 +296,8 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
             default :
                 cout << "==> ERREUR DE CREATION : un caractere non valide qui est " << Objet << " voulant etre creer en position (" << Position_X << ", " << Position_Y << ") ne correspond a aucun objet.\n" ;
                 cout << "--> Le terrain contenu dans " << NomFichier + ".txt" << " n'as donc pas pu etre creer" << endl ;
-                d_tableau.clear() ;
+                viderLeTerrain() ;
+				d_tableau.clear() ;
                 return *this ;
         }
     }
@@ -350,4 +353,12 @@ bool terrain::TerrainValide() const
             return false ;
         }
     }
+}
+
+void terrain::viderLeTerrain() {
+	for (int i = 0; i < hauteur(); ++i) {
+		for (int j = 0; j < largeur(); ++j) {
+			delete d_tableau[i][j];
+		}
+	}
 }
