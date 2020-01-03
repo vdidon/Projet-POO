@@ -53,3 +53,6 @@ desktop.ini
 # CodeBlocks
 *.layout
 #*.cbp
+
+# Test
+!testVectorClear.exe
