@@ -187,14 +187,14 @@ void terrain::sauvegarder(const std::string &NomFichier) const
     else
     {
         int H = hauteur(), L = largeur() ;
-        f << H << " " << L << '\n' ;
+        f << H << ' ' << L << endl ;
         for(int i = 0 ; i < H ; i++)
         {
             for(int j = 0 ; j < L ; j++)
             {
                 int Position_X = i, Position_Y = j ;
                 auto Objet = typeCase(Position_X, Position_Y) ;
-                f << Position_X << " " << Position_Y << " " << Objet << '\n' ;
+                f << Position_X << ' ' << Position_Y << ' ' << Objet << endl ;
             }
         }
     }
