@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{13A77AFF-B419-4CA7-B0B0-BA713FC0CC9E}</ProjectGuid>
-    <RootNamespace>ProjetPOOgit</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{7187394A-6FD2-4112-ADB0-891E26688ECB}</ProjectGuid>
+    <RootNamespace>Doctest</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -77,6 +77,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -84,7 +87,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -96,6 +103,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
@@ -110,13 +118,15 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CaseVide.h" />
     <ClInclude Include="debris.h" />
-    <ClInclude Include="DOC_TEST\doctest.h" />
+    <ClInclude Include="doctest.h" />
     <ClInclude Include="jeu.h" />
     <ClInclude Include="joueur.h" />
     <ClInclude Include="joueurBase.h" />
@@ -128,14 +138,15 @@
     <ClInclude Include="robotNouveau.h" />
     <ClInclude Include="robotPerso.h" />
     <ClInclude Include="terrain.h" />
-    <ClInclude Include="winbgi\Visual Studio\graphics.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CaseVide.cpp" />
     <ClCompile Include="debris.cpp" />
     <ClCompile Include="jeu.cpp" />
     <ClCompile Include="joueur.cpp" />
     <ClCompile Include="joueurBase.cpp" />
     <ClCompile Include="joueurExpert.cpp" />
+    <ClCompile Include="mainTest.cpp" />
     <ClCompile Include="mur.cpp" />
     <ClCompile Include="objet.cpp" />
     <ClCompile Include="robot.cpp" />
@@ -143,7 +154,14 @@
     <ClCompile Include="robotNouveau.cpp" />
     <ClCompile Include="robotPerso.cpp" />
     <ClCompile Include="terrain.cpp" />
-    <ClCompile Include="winbgi\Visual Studio\winbgi.cpp" />
+    <ClCompile Include="testDebris.cpp" />
+    <ClCompile Include="testJoueurBase.cpp" />
+    <ClCompile Include="testJoueurExpert.cpp" />
+    <ClCompile Include="testMur.cpp" />
+    <ClCompile Include="TestRobotAncien.cpp" />
+    <ClCompile Include="TestRobotNouveau.cpp" />
+    <ClCompile Include="TestRobotPerso.cpp" />
+    <ClCompile Include="TestTerrain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

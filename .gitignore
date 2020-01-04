@@ -49,6 +49,9 @@ desktop.ini
 #*.sln
 #*.vcxproj
 *.xml
+Debug
+Release
+x64
 
 # CodeBlocks
 *.layout
