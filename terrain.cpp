@@ -289,7 +289,8 @@ void terrain::viderLeTerrain()
     {
 		for(int j = 0 ; j < largeur() ; j++)
         {
-			d_tableau[i][j] = nullptr ; // mieux que delete, on comprends mieux que c'est un terrain vide
+			//d_tableau[i][j] = nullptr ; // mieux que delete, on comprends mieux que c'est un terrain vide
+			delete d_tableau[i][j]; // Nécéssaire pour supprimer corectement les objets
 		}
 	}
 }
