@@ -36,14 +36,14 @@ void jeu::run()
 
 /*void jeu::deplacerObjet(int x1, int x2, int y1, int y2, char objet)
 {
-	if (d_terrain.typeCase(x2, y2) == '.')
+	if (d_terrain.typeCase(x2, y2) == objet::TYPES::VIDE)
 	{
 		d_terrain.ChangerTypeObjet(x2, y2, objet);
-		d_terrain.ChangerTypeObjet(x1, y1, '.');
+		d_terrain.ChangerTypeObjet(x1, y1, objet::TYPES::VIDE);
 	}
 	else
 	{
-		d_terrain.ChangerTypeObjet(x2, y2, 'D');
+		d_terrain.ChangerTypeObjet(x2, y2, objet::TYPES::DEBRIS);
 	}
 }*/
 
@@ -74,13 +74,13 @@ void jeu::lancerJeu()
 	{
 		for (int j = 0; j < d_terrain.largeur() && (joueurPresent < 1 || auMoinsUnRobot == false); ++j)
 		{
-			if (d_terrain.typeCase(i, j) == 'B' || d_terrain.typeCase(i, j) == 'E')
+			if (d_terrain.typeCase(i, j) == objet::TYPES::JOUEUR_BASE || d_terrain.typeCase(i, j) == objet::TYPES::JOUEUR_EXPERT)
 			{
 				joueurPresent++;
 				joueurX = i;
 				joueurY = j;
 			}
-			if (d_terrain.typeCase(i, j) == 'A' || d_terrain.typeCase(i, j) == 'N' || d_terrain.typeCase(i, j) == 'P')
+			if (d_terrain.typeCase(i, j) == objet::TYPES::ROBOT_ANCIEN || d_terrain.typeCase(i, j) == objet::TYPES::ROBOT_NOUVEAU || d_terrain.typeCase(i, j) == objet::TYPES::ROBOT_PERSO)
 			{
 				auMoinsUnRobot = true;
 			}
@@ -113,10 +113,10 @@ void jeu::lancerJeu()
 			std::cin >> y;
 			if (objetJoueur->PeutAllerEn(x, y))
 			{
-				if (d_terrain.typeCase(joueurX + x, joueurY + y) == '.')
+				if (d_terrain.typeCase(joueurX + x, joueurY + y) == objet::TYPES::VIDE)
 				{
 					//d_terrain.ChangerTypeObjet(joueurX + x, joueurY + y, objetJoueur->typeObjet());
-					//d_terrain.ChangerTypeObjet(joueurX, joueurY, '.');
+					//d_terrain.ChangerTypeObjet(joueurX, joueurY, objet::TYPES::VIDE);
 					d_terrain.deplacerObjet(joueurX, joueurY,joueurX + x, joueurY + y);
 					joueurX += x;
 					joueurY += y;
@@ -125,7 +125,7 @@ void jeu::lancerJeu()
 					{
 						for (int j = 0; j < d_terrain.largeur(); ++i)
 						{
-							if (d_terrain.typeCase(i, j) == 'A' || d_terrain.typeCase(i, j) == 'N' || d_terrain.typeCase(i, j) == 'P')
+							if (d_terrain.typeCase(i, j) == objet::TYPES::ROBOT_ANCIEN || d_terrain.typeCase(i, j) == objet::TYPES::ROBOT_NOUVEAU || d_terrain.typeCase(i, j) == objet::TYPES::ROBOT_PERSO)
 							{
 								objet* objetRobot = d_terrain.Case(i, j);
 								nbRobotsRestant++;
@@ -408,7 +408,7 @@ void jeu::customiserTerrain()
 			}
 			else
 			{
-				//d_terrain.ChangerTypeObjet(x, y, '.');
+				//d_terrain.ChangerTypeObjet(x, y, objet::TYPES::VIDE);
 				d_terrain.AjouterObjet(y,x,objet::TYPES::VIDE);
 				std::cout << "Objet en case de coordonnées (" << x << ',' << y << ") a été supprimé !" << std::endl;
 			}
