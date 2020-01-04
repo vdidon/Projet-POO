@@ -121,14 +121,14 @@ class terrain
         */
         void AjouterObjet(int ligne, int colonne, const char &Type_Objet) ;
 
-								/** Procédure permettant d'ajouter un robot personalisé dans le terrain
-									@param Ligne - La ligne où on ajoute le robot
-									@param Colonne - La colonne où on ajoute le robot
-									@param Direction - Le tableau dans lesquelles le robot va pouvoir se déplacer ([0] = Nord, puis dans le sens des aiguilles d'une montre),
-										   0 = il ne pourras pas aller dans la direction et 1 il pourra
-									@param CaractereRobot - Le carctère représentant un robot personnalisé
-								*/
-								void AjouterRobotPerso(int Ligne, int Colonne, int Vitesse, bool Direction[8], const char &CaractereRobot) ;
+        /** Procédure permettant d'ajouter un robot personalisé dans le terrain
+            @param Ligne - La ligne où on ajoute le robot
+            @param Colonne - La colonne où on ajoute le robot
+            @param Direction - Le tableau dans lesquelles le robot va pouvoir se déplacer ([0] = Nord, puis dans le sens des aiguilles d'une montre),
+                    0 = il ne pourras pas aller dans la direction et 1 il pourra
+            @param CaractereRobot - Le carctère représentant un robot personnalisé
+        */
+        void AjouterRobotPerso(int Ligne, int Colonne, int Vitesse, bool Direction[8], const char &CaractereRobot, std::ifstream &ist) ;
 
 		/** Permet de déplacer un objet de coordonnées (x1, y1) en (x2, y2)
             @param x1 - Coordonnées x de départ de l'objet
@@ -138,12 +138,12 @@ class terrain
 		*/
 		void deplacerObjet(int x1, int y1, int x2, int y2) ;
 
+		/** Procédure permettant supprimer tous les objets du terrain */
+        void viderLeTerrain() ;
+
     private :
 
         std::vector <std::vector <objet*>> d_tableau ;
-
-        /** Procédure permettant supprimer tous les objets du terrain */
-        void viderLeTerrain() ;
 };
 
 #endif // TERRAIN_H

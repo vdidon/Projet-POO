@@ -5,7 +5,7 @@ TEST_CASE ("Tests pour robotNouveau") {
 	robotNouveau r = robotNouveau{};
 
 	SUBCASE("typeObjet") {
-				REQUIRE_EQ(r.typeObjet(), objet::TYPES::ROBOT_ANCIEN);
+				REQUIRE_EQ(r.typeObjet(), objet::TYPES::ROBOT_NOUVEAU);
 	}
 
 	SUBCASE("PeutAllerEn") {

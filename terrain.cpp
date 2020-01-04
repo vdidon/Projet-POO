@@ -6,7 +6,7 @@ terrain::terrain(int hauteur, int largeur) : d_tableau(hauteur, std::vector <obj
     {
         for(int j = 0 ; j < largeur ; j++)
         {
-            AjouterObjet(i, j, '.') ;
+            AjouterObjet(i, j, objet::TYPES::VIDE) ;
         }
     }
 }
@@ -94,8 +94,19 @@ bool terrain::CaractereInvalide(const char &TypeObjet) const
     return (TypeObjet != objet::TYPES::DEBRIS && TypeObjet != objet::TYPES::JOUEUR_BASE && TypeObjet != objet::TYPES::JOUEUR_EXPERT && TypeObjet != objet::TYPES::MUR && TypeObjet != objet::TYPES::ROBOT_ANCIEN && TypeObjet != objet::TYPES::ROBOT_NOUVEAU && TypeObjet != objet::TYPES::ROBOT_PERSO && TypeObjet != objet::TYPES::VIDE) ;
 }
 
-void terrain::AjouterRobotPerso(int Ligne, int Colonne, int Vitesse, bool Direction[8], const char &CaractereRobot)
+void terrain::AjouterRobotPerso(int Ligne, int Colonne, int Vitesse, bool Direction[8], const char &CaractereRobot, std::ifstream &ist)
 {
+    ist >> Vitesse ;
+    int direction1, direction2, direction3, direction4, direction5, direction6, direction7, direction8 ;
+    ist >> direction1 >> direction2 >> direction3 >> direction4 >> direction5 >> direction6 >> direction7 >> direction8 ;
+    Direction[0] = direction1 ;
+    Direction[1] = direction2 ;
+    Direction[2] = direction3 ;
+    Direction[3] = direction4 ;
+    Direction[4] = direction5 ;
+    Direction[5] = direction6 ;
+    Direction[6] = direction7 ;
+    Direction[7] = direction8 ;
     d_tableau[Ligne][Colonne] = new robotPerso(Vitesse, Direction, CaractereRobot) ;
 }
 
@@ -108,10 +119,10 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
         cout << "==> ERREUR DE CREATION : un caractere non valide qui est " << Type_Objet << " voulant etre creer en position (" << ligne << ", " << colonne << ") ne correspond a aucun objet.\n" ;
         cout << "--> Les seuls objets possibles sont representes par : " << objet::TYPES::DEBRIS << " (debris), " << objet::TYPES::JOUEUR_BASE << " (Joueur de base), " << objet::TYPES::JOUEUR_EXPERT << " (Joueur Expert), " << objet::TYPES::MUR << " (Mur), " << objet::TYPES::ROBOT_ANCIEN << " (Robot 1ere generation), " << objet::TYPES::ROBOT_NOUVEAU << " (Robot de 2e generation), " << objet::TYPES::ROBOT_PERSO << " (Robot Personnalisable (+ ses caracteristiques)) et " << objet::TYPES::VIDE << " (Case vide)" ;
     }
-    /*else
+    else
     {
 	    delete d_tableau[ligne][colonne] ;
-    }*/ // POURQUOI ???
+    }
     switch(Type_Objet)
     {
         case objet::TYPES::VIDE :
@@ -150,10 +161,12 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
             break ;
 
         case objet::TYPES::ROBOT_PERSO :
+        {
             int vitesseDeplacement ;
             bool direct[8] ;
-            AjouterRobotPerso(ligne, colonne, vitesseDeplacement, direct, Type_Objet) ;
-            //d_tableau[ligne][colonne] = ObjetACreer ;
+            std::ifstream f{} ;
+            AjouterRobotPerso(ligne, colonne, vitesseDeplacement, direct, Type_Objet, f) ;
+        }
 
         /** Autre cas si un robot customisable est dans le terrain pour éviter d'afficher une erreur qui n'existe pas */
         default :
@@ -246,19 +259,9 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
                 break ;
 
             case objet::TYPES::ROBOT_PERSO :
-                int direction1, direction2, direction3, direction4, direction5, direction6, direction7, direction8, vitesse ;
-                f >> vitesse ;
+                int vitesse ;
                 bool direct[8] ;
-                f >> direction1 >> direction2 >> direction3 >> direction4 >> direction5 >> direction6 >> direction7 >> direction8 ;
-                direct[0] = direction1 ;
-                direct[1] = direction2 ;
-                direct[2] = direction3 ;
-                direct[3] = direction4 ;
-                direct[4] = direction5 ;
-                direct[5] = direction6 ;
-                direct[6] = direction7 ;
-                direct[7] = direction8 ;
-                AjouterRobotPerso(Position_X, Position_Y, vitesse, direct, Objet) ;
+                AjouterRobotPerso(Position_X, Position_Y, vitesse, direct, Objet, f) ;
                 break ;
 
             case objet::TYPES::VIDE :
@@ -286,26 +289,26 @@ void terrain::viderLeTerrain()
     {
 		for(int j = 0 ; j < largeur() ; j++)
         {
-			delete d_tableau[i][j] ;
+			d_tableau[i][j] = nullptr ; // mieux que delete, on comprends mieux que c'est un terrain vide
 		}
 	}
 }
 
-void terrain::deplacerObjet(int x1, int y1, int x2, int y2)
+void terrain::deplacerObjet(int x1, int y1, int x2, int y2) // Indice inversé, c'était mis [y...][x...] alors que c'était [x...][y...] sinon erreur de type et échange pas les bonnes cases
 {
-	if(d_tableau[y2][x2]->d_type == objet::TYPES::VIDE)
+	if(d_tableau[x2][y2]->d_type == objet::TYPES::VIDE)
 	{
 		/** Echange les pointeurs */
-		objet* tmp = d_tableau[y1][x1] ;
-		d_tableau[y1][x1] = d_tableau[y2][x2] ;
-		d_tableau[y2][x2] = tmp ;
+		objet* tmp = d_tableau[x1][y1] ;
+		d_tableau[x1][y1] = d_tableau[x2][y2] ;
+		d_tableau[x2][y2] = tmp ;
 	}
-	else
+	else // MANQUE DES TESTS
 	{
 		/** Colision entre 2 objets */
-		delete d_tableau[y1][x1] ;
-		delete d_tableau[y2][x2] ;
-		d_tableau[y1][x1] = new CaseVide() ;
-		d_tableau[y2][x2] = new debris() ;
+		delete d_tableau[x1][y1] ;
+		delete d_tableau[x2][y2] ;
+		d_tableau[x1][y1] = new CaseVide() ;
+		d_tableau[x2][y2] = new debris() ;
 	}
 }
