@@ -21,20 +21,18 @@ class objet
         virtual char typeObjet() const = 0 ;
 
         /**
-            Classe permettant de donner un type aux objets
+            Structure permettant de donner un type aux objets
         */
-        class TYPES
+        struct TYPES
         {
-            public :
-
-                static constexpr char ROBOT_ANCIEN = 'A' ;
-                static constexpr char ROBOT_NOUVEAU = 'N' ;
-                static constexpr char ROBOT_PERSO = 'P' ;
-                static constexpr char JOUEUR_BASE = 'B' ;
-                static constexpr char JOUEUR_EXPERT = 'E' ;
-                static constexpr char MUR = 'M' ;
-                static constexpr char DEBRIS = 'D' ;
-                static constexpr char VIDE = '.' ;
+            static constexpr char ROBOT_ANCIEN = 'A' ;
+            static constexpr char ROBOT_NOUVEAU = 'N' ;
+            static constexpr char ROBOT_PERSO = 'P' ;
+            static constexpr char JOUEUR_BASE = 'B' ;
+            static constexpr char JOUEUR_EXPERT = 'E' ;
+            static constexpr char MUR = 'M' ;
+            static constexpr char DEBRIS = 'D' ;
+            static constexpr char VIDE = '.' ;
         };
 
 };
