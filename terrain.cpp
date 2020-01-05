@@ -331,6 +331,7 @@ void terrain::viderLeTerrain()
 
 void terrain::deplacerObjet(int x1, int y1, int x2, int y2)
 {
+    /**
     if(typeCase(x1, y1) == objet::TYPES::DEBRIS)
     {
         cout << "On ne peut pas deplacer un debris." ;
@@ -343,24 +344,46 @@ void terrain::deplacerObjet(int x1, int y1, int x2, int y2)
     }
     if(typeCase(x2, y2) == objet::TYPES::DEBRIS)
     {
-        cout << "On ne peut pas deplacer un debris." ;
+        cout << "On ne peut pas deplacer vers un debris." ;
         return ;
     }
     if(typeCase(x2, y2) == objet::TYPES::MUR)
     {
-        cout << "On ne peut pas deplacer un mur." ;
+        cout << "On ne peut pas deplacer vers un mur." ;
         return ;
     }
     if(typeCase(x1, y1) == objet::TYPES::ROBOT_ANCIEN || typeCase(x1, y1) == objet::TYPES::ROBOT_NOUVEAU || typeCase(x1, y1) == objet::TYPES::ROBOT_PERSO)
     {
         if(typeCase(x2, y2) == objet::TYPES::JOUEUR_BASE || typeCase(x2, y2) == objet::TYPES::JOUEUR_EXPERT)
         {
-            /** Colision entre un robot et un joueur  */
+            // Colision entre un robot et un joueur
             cout << "Le joueur est ecrase." ;
             return ;
         }
     }
-    /** Echange les pointeurs */
+    if (typeCase(x1, y1) == objet::TYPES::JOUEUR_BASE || typeCase(x1, y1) == objet::TYPES::JOUEUR_EXPERT)
+    {
+        if (typeCase(x2, y2) == objet::TYPES::ROBOT_ANCIEN || typeCase(x2, y2) == objet::TYPES::ROBOT_NOUVEAU || typeCase(x2, y2) == objet::TYPES::ROBOT_PERSO)
+        {
+            // Colision entre un joueur et un robot
+            cout << "Le joueur est rentre dans un robot";
+            return;
+        }
+    }
+    if (typeCase(x1, y1) == objet::TYPES::ROBOT_ANCIEN || typeCase(x1, y1) == objet::TYPES::ROBOT_NOUVEAU || typeCase(x1, y1) == objet::TYPES::ROBOT_PERSO)
+    {
+        if (typeCase(x2, y2) == objet::TYPES::ROBOT_ANCIEN || typeCase(x2, y2) == objet::TYPES::ROBOT_NOUVEAU || typeCase(x2, y2) == objet::TYPES::ROBOT_PERSO)
+        {
+            // Colision entre un robot et un autre robot
+            delete d_tableau[x1][y1];
+            delete d_tableau[x2][y2];
+            objetDebris = new debris();
+            d_tableau[x2][y2] = objetDebris;
+            return;
+        }
+    }
+    */
+    // Echange les pointeurs
     objet* tmp = d_tableau[x1][y1] ;
     d_tableau[x1][y1] = d_tableau[x2][y2] ;
     d_tableau[x2][y2] = tmp ;
