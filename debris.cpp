@@ -1,8 +1,7 @@
 #include "debris.h"
 
-debris::debris(const char &Type_Debris)
+debris::debris()
 {
-    d_type = Type_Debris ;
 }
 
 /**
@@ -15,5 +14,5 @@ bool debris::PeutAllerEn(int x, int y) const
 
 char debris::typeObjet() const
 {
-    return d_type ;
+    return objet::TYPES::DEBRIS;
 }

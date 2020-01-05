@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-joueurBase::joueurBase(const char &Type_Joueur_Base) : d_type{Type_Joueur_Base}
+joueurBase::joueurBase()
 {}
 
 bool joueurBase::PeutAllerEn(int dx, int dy) const
@@ -12,5 +12,5 @@ bool joueurBase::PeutAllerEn(int dx, int dy) const
 
 char joueurBase::typeObjet() const
 {
-    return d_type ;
+    return objet::TYPES::JOUEUR_BASE;
 }

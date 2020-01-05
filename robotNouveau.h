@@ -7,7 +7,7 @@ class robotNouveau : public robot
 {
     public :
 
-        robotNouveau(const char &Type_robot_Nouveau = objet::TYPES::ROBOT_NOUVEAU) ;
+        robotNouveau() ;
         virtual ~robotNouveau() override ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         virtual char typeObjet() const override ;

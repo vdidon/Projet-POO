@@ -135,7 +135,7 @@ void terrain::AjouterRobotPerso(int Ligne, int Colonne, int &Vitesse, std::vecto
     Direction[5] = direction6 ;
     Direction[6] = direction7 ;
     Direction[7] = direction8 ;
-    d_tableau[Ligne][Colonne] = new robotPerso(Vitesse, Direction, CaractereRobot) ;
+    d_tableau[Ligne][Colonne] = new robotPerso(Vitesse, Direction) ;
 }
 
 void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
@@ -154,37 +154,37 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
     switch(Type_Objet)
     {
         case objet::TYPES::VIDE :
-            ObjetACreer = new CaseVide(Type_Objet) ;
+            ObjetACreer = new CaseVide() ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
         case objet::TYPES::DEBRIS :
-            ObjetACreer = new debris(Type_Objet) ;
+            ObjetACreer = new debris() ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
         case objet::TYPES::JOUEUR_BASE :
-            ObjetACreer = new joueurBase(Type_Objet) ;
+            ObjetACreer = new joueurBase() ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
         case objet::TYPES::JOUEUR_EXPERT :
-            ObjetACreer = new joueurExpert(Type_Objet) ;
+            ObjetACreer = new joueurExpert() ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
         case objet::TYPES::MUR :
-            ObjetACreer = new mur(Type_Objet) ;
+            ObjetACreer = new mur() ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
         case objet::TYPES::ROBOT_ANCIEN :
-            ObjetACreer = new robotAncien(Type_Objet) ;
+            ObjetACreer = new robotAncien() ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 
         case objet::TYPES::ROBOT_NOUVEAU :
-            ObjetACreer = new robotNouveau(Type_Objet) ;
+            ObjetACreer = new robotNouveau() ;
             d_tableau[ligne][colonne] = ObjetACreer ;
             break ;
 

@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-joueurExpert::joueurExpert(const char &Type_Joueur_Expert): d_type{Type_Joueur_Expert}
+joueurExpert::joueurExpert()
 {}
 
 bool joueurExpert::PeutAllerEn(int dx, int dy) const
@@ -14,5 +14,5 @@ bool joueurExpert::PeutAllerEn(int dx, int dy) const
 
 char joueurExpert::typeObjet() const
 {
-    return d_type ;
+    return objet::TYPES::JOUEUR_EXPERT;
 }

@@ -9,7 +9,7 @@ class robotPerso : public robot
 {
     public :
 
-        robotPerso(unsigned int vitesse, const std::vector <bool> &direction, const char &Type_Robot_Perso = objet::TYPES::ROBOT_PERSO) ;
+        robotPerso(unsigned int vitesse, const std::vector <bool> &direction) ;
         virtual ~robotPerso() ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         virtual char typeObjet() const override ;

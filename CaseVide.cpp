@@ -1,8 +1,7 @@
 #include "CaseVide.h"
 
-CaseVide::CaseVide(const char &Type_Case_Vide)
+CaseVide::CaseVide()
 {
-    d_type = Type_Case_Vide ;
 }
 
 bool CaseVide::PeutAllerEn(int x, int y) const
@@ -12,5 +11,5 @@ bool CaseVide::PeutAllerEn(int x, int y) const
 
 char CaseVide::typeObjet() const
 {
-    return d_type ;
+    return objet::TYPES::VIDE ;
 }
