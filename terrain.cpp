@@ -6,7 +6,8 @@ terrain::terrain(int hauteur, int largeur) : d_tableau(hauteur, std::vector <obj
     {
         for(int j = 0 ; j < largeur ; j++)
         {
-            AjouterObjet(i, j, objet::TYPES::VIDE) ;
+            //AjouterObjet(i, j, objet::TYPES::VIDE) ;
+            d_tableau[i][j] = new CaseVide();
         }
     }
 }
@@ -73,9 +74,9 @@ void terrain::ChangerHauteur(int x)
 
 void terrain::ChangerLargeur(int y)
 {
+	int ancienneLargeur = largeur() ;
 	for(int i = 0 ; i < hauteur() ; i++)
 	{
-		int ancienneLargeur = largeur() ;
 		if(y < ancienneLargeur) // Supprimer les objets qui ne sont plus dans le tableau
 		{
 			for (int j = y ; j < ancienneLargeur ; j++)
@@ -84,9 +85,12 @@ void terrain::ChangerLargeur(int y)
 			}
 		}
 		d_tableau[i].resize(y);
-		if(largeur() > ancienneLargeur) // On rajoute des cases vides dans les cases supplémentaires
+		if(y > ancienneLargeur) // On rajoute des cases vides dans les cases supplémentaires
 		{
-			d_tableau[i][ancienneLargeur]= new CaseVide[y - ancienneLargeur] ;
+			for (int j = ancienneLargeur; j < y; ++j)
+			{
+				d_tableau[i][j]= new CaseVide();
+			}
 		}
 	}
 }
@@ -150,7 +154,7 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
         cout << "==> ERREUR DE CREATION : un caractere non valide qui est " << Type_Objet << " voulant etre creer en position (" << ligne << ", " << colonne << ") ne correspond a aucun objet.\n" ;
         cout << "--> Les seuls objets possibles sont representes par : " << objet::TYPES::DEBRIS << " (debris), " << objet::TYPES::JOUEUR_BASE << " (Joueur de base), " << objet::TYPES::JOUEUR_EXPERT << " (Joueur Expert), " << objet::TYPES::MUR << " (Mur), " << objet::TYPES::ROBOT_ANCIEN << " (Robot 1ere generation), " << objet::TYPES::ROBOT_NOUVEAU << " (Robot de 2e generation), " << objet::TYPES::ROBOT_PERSO << " (Robot Personnalisable (+ ses caracteristiques)) et " << objet::TYPES::VIDE << " (Case vide)" ;
     }
-    else
+    else if (d_tableau[ligne][colonne]->typeObjet()!=Type_Objet)
     {
 	    delete d_tableau[ligne][colonne] ;
     }
@@ -296,7 +300,7 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
                 break ;}
 
             case objet::TYPES::VIDE :
-                AjouterObjet(Position_X, Position_Y, Objet) ;
+	                AjouterObjet(Position_X, Position_Y, Objet) ;
                 break ;
 
             default :

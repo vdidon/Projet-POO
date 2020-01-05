@@ -9,6 +9,8 @@ class CaseVide : public objet
 
         CaseVide() ;
 
+        ~CaseVide() override ;
+
         /**
             Méthode pour savoir si l'objet peut être déplacer (virtuelle)
         */

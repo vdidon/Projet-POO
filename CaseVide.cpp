@@ -13,3 +13,7 @@ char CaseVide::typeObjet() const
 {
     return objet::TYPES::VIDE ;
 }
+
+CaseVide::~CaseVide() {
+
+}
