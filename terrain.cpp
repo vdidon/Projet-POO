@@ -57,10 +57,12 @@ void terrain::ChangerHauteur(int x)
 			}
 		}
 	}
+	d_tableau.resize(x);
 	if(hauteur() > ancienneHauteur)  // On rajoute des cases vides dans les cases supplémentaires
 	{
 		for(int i = ancienneHauteur ; i < hauteur() ; i++)
         {
+			d_tableau[i].resize(largeur());
 			for(int j = 0 ; j < largeur() ; j++)
 			{
 				d_tableau[i][j] = new CaseVide() ;
@@ -81,6 +83,7 @@ void terrain::ChangerLargeur(int y)
 				delete d_tableau[i][j] ;
 			}
 		}
+		d_tableau[i].resize(y);
 		if(largeur() > ancienneLargeur) // On rajoute des cases vides dans les cases supplémentaires
 		{
 			d_tableau[i][ancienneLargeur]= new CaseVide[y - ancienneLargeur] ;
