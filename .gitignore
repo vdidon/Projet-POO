@@ -56,6 +56,3 @@ x64
 # CodeBlocks
 *.layout
 #*.cbp
-
-# Test
-!testVectorClear.exe
