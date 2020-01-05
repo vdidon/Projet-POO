@@ -156,8 +156,7 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
     }
     else if (d_tableau[ligne][colonne]->typeObjet()!=Type_Objet)
     {
-		d_tableau[ligne][colonne] = nullptr ;
-	    //delete d_tableau[ligne][colonne] ;
+	    delete d_tableau[ligne][colonne] ;
     }
     switch(Type_Objet)
     {
