@@ -68,7 +68,7 @@ TEST_CASE("L'initialisation du terrain est correct")
             REQUIRE_EQ(t.hauteur(), NewHauteur) ;
         }
 
-        SUBCASE("sur un terrain construit avec des valeurs")
+        SUBCASE("Sur un terrain construit avec des valeurs")
         {
             int OldHauteur = 2, OldLargeur = 1 ;
             terrain t{OldHauteur, OldLargeur} ;
@@ -111,7 +111,7 @@ TEST_CASE("Les valeurs du terrain sont correctes")
             t.AjouterObjet(LigneCaseAjoutObjet, ColonneCaseAjoutObjet, 'L') ;
         }
 
-        /** Pour sauter une ligne entre les affcihages */
+        /** Pour sauter une ligne entre les affichages */
         cout << endl ;
 
         SUBCASE("Sur un terrain contenant un ou plusieurs objets")
@@ -125,10 +125,10 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 t.AjouterObjet(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet, 'L') ;
             }
 
-            /** Pour sauter une ligne entre les affcihages */
+            /** Pour sauter une ligne entre les affichages */
             cout << endl ;
 
-            SUBCASE("Sur un terrain avec 2 (Nombre inférieur à la taille du terrain) et le reste des cases vides (on a au moins 1 case vide)")
+            SUBCASE("Sur un terrain avec 2 (ou un nombre inférieur à la taille du terrain) et le reste des cases vides (on a au moins 1 case vide)")
             {
                 cout << "Sur un terrain avec 2 objets (ou plus) et des cases vides : \n" ;
 
@@ -171,7 +171,7 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 }
             }
 
-            SUBCASE("Sur un terrain avec 2 (Nombre inférieur à la taille du terrain) et le reste des cases vides (on a au moins 1 case vide)")
+            SUBCASE("Sur un terrain avec 2 (ou un nombre inférieur à la taille du terrain) et le reste des cases vides (on a au moins 1 case vide)")
             {
                 int IndiceLigneCaseAjoutObjet1 = 0, IndiceColonneCaseAjoutObjet1 = 0 ;
                 int IndiceLigneCaseAjoutObjet2 = 0, IndiceColonneCaseAjoutObjet2 = 1 ;
@@ -227,18 +227,20 @@ TEST_CASE("Les valeurs du terrain sont correctes")
 
                 REQUIRE_EQ(t.typeCase(IndiceLigneCaseObjetRemplacant, IndiceColonneCaseObjetRemplacant), objet::TYPES::VIDE) ;
 
-                cout << "Terrain 1 objet et que des cases vides : \n" ;
-                cout << "Avant le changement : \n" ;
+                cout << "Terrain 1 objet et que des cases vides :" << endl ;
+                cout << "Avant le changement :" << endl ;
                 t.AffichageTerrain() ;
 
                 t.deplacerObjet(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet, IndiceLigneCaseObjetRemplacant, IndiceColonneCaseObjetRemplacant) ;
 
-                cout << "Apres le changement : \n" ;
+                cout << "Apres le changement :" << endl ;
                 t.AffichageTerrain() ;
-                REQUIRE_EQ(t.typeCase(IndiceLigneCaseObjetRemplacant, IndiceColonneCaseObjetRemplacant), objet::TYPES::MUR) ;
+
+                REQUIRE_EQ(t.typeCase(IndiceLigneCaseAjoutObjet, IndiceColonneCaseAjoutObjet), objet::TYPES::MUR) ;
+                REQUIRE_EQ(t.typeCase(IndiceLigneCaseObjetRemplacant, IndiceColonneCaseObjetRemplacant), objet::TYPES::VIDE) ;
             }
 
-            SUBCASE("Sur un terrain avec 2 ou plus d'objets (Nombre inférieur à la taille du terrain) dont on va changer le type et le reste des cases vides (on a au moins 1 case vide)")
+            SUBCASE("Sur un terrain avec 2 ou plus d'objets (ou un nombre inférieur à la taille du terrain) dont on va changer le type et le reste des cases vides (on a au moins 1 case vide)")
             {
                 int IndiceLigneCaseAjoutObjet1 = 0, IndiceColonneCaseAjoutObjet1 = 0 ;
                 int IndiceLigneCaseAjoutObjet2 = 0, IndiceColonneCaseAjoutObjet2 = 1 ;
@@ -258,14 +260,7 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 cout << "Terrain apres le changement : " << endl ;
                 t.AffichageTerrain() ;
 
-                /**
-                Ce qui devrait ce passer :
                 REQUIRE_EQ(t.typeCase(IndiceLigneCaseAjoutObjet1, IndiceColonneCaseAjoutObjet1), objet::TYPES::MUR) ;
-                REQUIRE_EQ(t.typeCase(IndiceLigneCaseAjoutObjet2, IndiceColonneCaseAjoutObjet2), objet::TYPES::DEBRIS) ;
-                */
-
-                /** Ce qui se passe : je crois pas que ce soit BON*/
-                REQUIRE_EQ(t.typeCase(IndiceLigneCaseAjoutObjet1, IndiceColonneCaseAjoutObjet1), objet::TYPES::VIDE) ;
                 REQUIRE_EQ(t.typeCase(IndiceLigneCaseAjoutObjet2, IndiceColonneCaseAjoutObjet2), objet::TYPES::DEBRIS) ;
 
             }
@@ -277,7 +272,7 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 t.AjouterObjet(1, 0, objet::TYPES::JOUEUR_BASE) ;
                 t.AjouterObjet(1, 1, objet::TYPES::ROBOT_ANCIEN) ;
 
-                cout << "terrain ne comportant que des objets : " << endl ;
+                cout << "Terrain ne comportant que des objets : " << endl ;
                 cout << "Terrain avant le 1er changement : " << endl ;
                 t.AffichageTerrain() ;
 
@@ -292,15 +287,8 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 cout << "Terrain apres le 1er changement : " << endl ;
                 t.AffichageTerrain() ;
 
-                /**
-                Ce qui devrait ce passer :
-                REQUIRE_EQ(t.typeCase(0, 0), objet::TYPES::JOUEUR_EXPERT) ;
-                REQUIRE_EQ(t.typeCase(0, 1), objet::TYPES::MUR) ; */
-
-
-                /** Ce qui se passe : je crois pas que ce soit BON */
-                REQUIRE_EQ(t.typeCase(0, 0), objet::TYPES::VIDE) ;
-                REQUIRE_EQ(t.typeCase(0, 1), objet::TYPES::DEBRIS) ;
+                REQUIRE_EQ(t.typeCase(0, 0), objet::TYPES::MUR) ;
+                REQUIRE_EQ(t.typeCase(0, 1), objet::TYPES::JOUEUR_EXPERT) ;
 
                 /** Change le joueur de base avec le robot ancien : */
                 t.deplacerObjet(1, 0, 1, 1) ;
@@ -308,15 +296,8 @@ TEST_CASE("Les valeurs du terrain sont correctes")
                 cout << "Terrain apres le 2e changement : " << endl ;
                 t.AffichageTerrain() ;
 
-                /**
-                Ce qui devrait ce passer :
                 REQUIRE_EQ(t.typeCase(1, 0), objet::TYPES::ROBOT_ANCIEN) ;
                 REQUIRE_EQ(t.typeCase(1, 1), objet::TYPES::JOUEUR_BASE) ;
-                */
-
-                /** Ce qui se passe : je crois pas que ce soit BON */
-                REQUIRE_EQ(t.typeCase(1, 0), objet::TYPES::VIDE) ;
-                REQUIRE_EQ(t.typeCase(1, 1), objet::TYPES::DEBRIS) ;
             }
         }
     }
@@ -396,88 +377,6 @@ TEST_CASE("Les opérations diverses sur un terrain sont correctes")
                 for(int j = 0 ; j < tVide.largeur() ; j++)
                 {
                     REQUIRE_EQ(tVide.Case(i, j), nullptr) ;
-                }
-            }
-        }
-
-        SUBCASE("Un terrain construit avec des dimensions est bien vidé")
-        {
-            int hauteur = 2, largeur = 2 ;
-            terrain tAVider{hauteur, largeur} ;
-
-            SUBCASE("Un terrain ne contenant que des cases vides est vidé correctement")
-            {
-                tAVider.viderLeTerrain() ;
-
-                for(int i = 0 ; i < tAVider.hauteur() ; i++)
-                {
-                    for(int j = 0 ; j < tAVider.largeur() ; j++)
-                    {
-                        REQUIRE_EQ(tAVider.Case(i, j), nullptr) ;
-                    }
-                }
-            }
-
-            SUBCASE("Un terrain contenant 1 ou plusieurs objets est vidé correctement")
-            {
-                SUBCASE("Un terrain contenant 1 objet est vidé correctement")
-                {
-                    tAVider.AjouterObjet(0, 0, objet::TYPES::MUR) ;
-                    REQUIRE_EQ(tAVider.typeCase(0, 0), objet::TYPES::MUR) ;
-
-                    tAVider.viderLeTerrain() ;
-
-                    for(int i = 0 ; i < tAVider.hauteur() ; i++)
-                    {
-                        for(int j = 0 ; j < tAVider.largeur() ; j++)
-                        {
-                            REQUIRE_EQ(tAVider.Case(i, j), nullptr) ;
-                        }
-                    }
-                }
-
-                SUBCASE("Un terrain contenant 2 objets ou plus (inférieur à la taille du terrain) et le reste des cases vides (on a au moins 1 case vide) est vidé correctement")
-                {
-                    tAVider.AjouterObjet(0, 0, objet::TYPES::MUR) ;
-                    REQUIRE_EQ(tAVider.typeCase(0, 0), objet::TYPES::MUR) ;
-
-                    tAVider.AjouterObjet(0, 1, objet::TYPES::JOUEUR_EXPERT) ;
-                    REQUIRE_EQ(tAVider.typeCase(0, 1), objet::TYPES::JOUEUR_EXPERT) ;
-
-                    tAVider.viderLeTerrain() ;
-
-                    for(int i = 0 ; i < tAVider.hauteur() ; i++)
-                    {
-                        for(int j = 0 ; j < tAVider.largeur() ; j++)
-                        {
-                            REQUIRE_EQ(tAVider.Case(i, j), nullptr) ;
-                        }
-                    }
-                }
-
-                SUBCASE("un terrain contenant unisuement des objets est vidé correctement")
-                {
-                    tAVider.AjouterObjet(0, 0, objet::TYPES::MUR) ;
-                    REQUIRE_EQ(tAVider.typeCase(0, 0), objet::TYPES::MUR) ;
-
-                    tAVider.AjouterObjet(0, 1, objet::TYPES::JOUEUR_EXPERT) ;
-                    REQUIRE_EQ(tAVider.typeCase(0, 1), objet::TYPES::JOUEUR_EXPERT) ;
-
-                    tAVider.AjouterObjet(1, 0, objet::TYPES::JOUEUR_BASE) ;
-                    REQUIRE_EQ(tAVider.typeCase(1, 0), objet::TYPES::JOUEUR_BASE) ;
-
-                    tAVider.AjouterObjet(1, 1, objet::TYPES::ROBOT_ANCIEN) ;
-                    REQUIRE_EQ(tAVider.typeCase(1, 1), objet::TYPES::ROBOT_ANCIEN) ;
-
-                    tAVider.viderLeTerrain() ;
-
-                    for(int i = 0 ; i < tAVider.hauteur() ; i++)
-                    {
-                        for(int j = 0 ; j < tAVider.largeur() ; j++)
-                        {
-                            REQUIRE_EQ(tAVider.Case(i, j), nullptr) ;
-                        }
-                    }
                 }
             }
         }
@@ -684,6 +583,11 @@ TEST_CASE("Les opérations diverses sur un terrain sont correctes")
         SUBCASE("Un robot customisable est bien chargé dans le terrain")
         {
             t.chargerTerrain("FichierTerrain_RobotPerso") ;
+            REQUIRE_EQ(dynamic_cast <robotPerso*>(t.Case(0,0))->get_vitesse(), 2) ;
+		    for(int i = 0 ; i < 8 ; i++)
+            {
+		    	REQUIRE_EQ(dynamic_cast <robotPerso*>(t.Case(0,0))->get_direction(i), i % 2) ;
+            }
         }
 
         SUBCASE("Le chargement d'un terrain dont le fichier n'existe pas est correct (doit affiché que le fichier n'existe pas)")

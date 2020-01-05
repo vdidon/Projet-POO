@@ -1,4 +1,5 @@
 #include "joueurExpert.h"
+
 #include <algorithm>
 
 joueurExpert::joueurExpert(const char &Type_Joueur_Expert): d_type{Type_Joueur_Expert}

@@ -47,7 +47,7 @@ int terrain::largeur() const
 void terrain::ChangerHauteur(int x)
 {
     d_tableau.resize(x) ;
-    for(int i = 0 ; i < d_tableau.size() ; ++i)
+    for(int i = 0 ; i < d_tableau.size() ; i++)
     {
         d_tableau[i].resize(largeur()) ;
     }
@@ -55,7 +55,7 @@ void terrain::ChangerHauteur(int x)
 
 void terrain::ChangerLargeur(int y)
 {
-    for(int i = 0 ; i < hauteur() ; ++i)
+    for(int i = 0 ; i < hauteur() ; i++)
     {
         d_tableau[i].resize(y) ;
     }
@@ -94,10 +94,11 @@ bool terrain::CaractereInvalide(const char &TypeObjet) const
     return (TypeObjet != objet::TYPES::DEBRIS && TypeObjet != objet::TYPES::JOUEUR_BASE && TypeObjet != objet::TYPES::JOUEUR_EXPERT && TypeObjet != objet::TYPES::MUR && TypeObjet != objet::TYPES::ROBOT_ANCIEN && TypeObjet != objet::TYPES::ROBOT_NOUVEAU && TypeObjet != objet::TYPES::ROBOT_PERSO && TypeObjet != objet::TYPES::VIDE) ;
 }
 
-void terrain::AjouterRobotPerso(int Ligne, int Colonne, int Vitesse, bool Direction[8], const char &CaractereRobot, std::ifstream &ist)
+void terrain::AjouterRobotPerso(int Ligne, int Colonne, int &Vitesse, std::vector <bool> &Direction, const char &CaractereRobot, std::ifstream &ist)
 {
+    Direction.resize(8) ;
     ist >> Vitesse ;
-    int direction1, direction2, direction3, direction4, direction5, direction6, direction7, direction8 ;
+    bool direction1, direction2, direction3, direction4, direction5, direction6, direction7, direction8 ;
     ist >> direction1 >> direction2 >> direction3 >> direction4 >> direction5 >> direction6 >> direction7 >> direction8 ;
     Direction[0] = direction1 ;
     Direction[1] = direction2 ;
@@ -163,7 +164,7 @@ void terrain::AjouterObjet(int ligne, int colonne, const char &Type_Objet)
         case objet::TYPES::ROBOT_PERSO :
         {
             int vitesseDeplacement ;
-            bool direct[8] ;
+            std::vector <bool> direct ;
             std::ifstream f{} ;
             AjouterRobotPerso(ligne, colonne, vitesseDeplacement, direct, Type_Objet, f) ;
         }
@@ -259,10 +260,10 @@ terrain& terrain::chargerTerrain(const std::string &NomFichier)
                 break ;
 
             case objet::TYPES::ROBOT_PERSO :
-                int vitesse ;
-                bool direct[8] ;
+                {int vitesse ;
+                std::vector <bool> direct ;
                 AjouterRobotPerso(Position_X, Position_Y, vitesse, direct, Objet, f) ;
-                break ;
+                break ;}
 
             case objet::TYPES::VIDE :
                 AjouterObjet(Position_X, Position_Y, Objet) ;
@@ -289,27 +290,44 @@ void terrain::viderLeTerrain()
     {
 		for(int j = 0 ; j < largeur() ; j++)
         {
-			//d_tableau[i][j] = nullptr ; // mieux que delete, on comprends mieux que c'est un terrain vide
-			delete d_tableau[i][j]; // Nécéssaire pour supprimer corectement les objets
+			delete d_tableau[i][j] ;
 		}
 	}
 }
 
-void terrain::deplacerObjet(int x1, int y1, int x2, int y2) // Indice inversé, c'était mis [y...][x...] alors que c'était [x...][y...] sinon erreur de type et échange pas les bonnes cases
+void terrain::deplacerObjet(int x1, int y1, int x2, int y2)
 {
-	if(d_tableau[x2][y2]->d_type == objet::TYPES::VIDE)
-	{
-		/** Echange les pointeurs */
-		objet* tmp = d_tableau[x1][y1] ;
-		d_tableau[x1][y1] = d_tableau[x2][y2] ;
-		d_tableau[x2][y2] = tmp ;
-	}
-	else // MANQUE DES TESTS
-	{
-		/** Colision entre 2 objets */
-		delete d_tableau[x1][y1] ;
-		delete d_tableau[x2][y2] ;
-		d_tableau[x1][y1] = new CaseVide() ;
-		d_tableau[x2][y2] = new debris() ;
-	}
+    if(typeCase(x1, y1) == objet::TYPES::DEBRIS)
+    {
+        cout << "On ne peut pas deplacer un debris." ;
+        return ;
+    }
+    if(typeCase(x1, y1) == objet::TYPES::MUR)
+    {
+        cout << "On ne peut pas deplacer un mur." ;
+        return ;
+    }
+    if(typeCase(x2, y2) == objet::TYPES::DEBRIS)
+    {
+        cout << "On ne peut pas deplacer un debris." ;
+        return ;
+    }
+    if(typeCase(x2, y2) == objet::TYPES::MUR)
+    {
+        cout << "On ne peut pas deplacer un mur." ;
+        return ;
+    }
+    if(typeCase(x1, y1) == objet::TYPES::ROBOT_ANCIEN || typeCase(x1, y1) == objet::TYPES::ROBOT_NOUVEAU || typeCase(x1, y1) == objet::TYPES::ROBOT_PERSO)
+    {
+        if(typeCase(x2, y2) == objet::TYPES::JOUEUR_BASE || typeCase(x2, y2) == objet::TYPES::JOUEUR_EXPERT)
+        {
+            /** Colision entre un robot et un joueur  */
+            cout << "Le joueur est ecrase." ;
+            return ;
+        }
+    }
+    /** Echange les pointeurs */
+    objet* tmp = d_tableau[x1][y1] ;
+    d_tableau[x1][y1] = d_tableau[x2][y2] ;
+    d_tableau[x2][y2] = tmp ;
 }

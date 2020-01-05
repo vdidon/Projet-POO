@@ -95,7 +95,7 @@ class terrain
             10 10            (Hauteur et Largeur)
             0 0 J            (Joueur)
             2 5 A           (Robot de gen 1)
-            2 6 P 01011      (Robot custom)
+            2 6 P 0 1 0 1 1      (Robot custom)
             1 3 D            (Débris)
             ...
         */
@@ -128,7 +128,7 @@ class terrain
                     0 = il ne pourras pas aller dans la direction et 1 il pourra
             @param CaractereRobot - Le carctère représentant un robot personnalisé
         */
-        void AjouterRobotPerso(int Ligne, int Colonne, int Vitesse, bool Direction[8], const char &CaractereRobot, std::ifstream &ist) ;
+        void AjouterRobotPerso(int Ligne, int Colonne, int &Vitesse, std::vector <bool> &Direction, const char &CaractereRobot, std::ifstream &ist) ;
 
 		/** Permet de déplacer un objet de coordonnées (x1, y1) en (x2, y2)
             @param x1 - Coordonnées x de départ de l'objet

@@ -3,16 +3,18 @@
 
 #include "robot.h"
 
+#include <vector>
+
 class robotPerso : public robot
 {
     public :
 
-        robotPerso(unsigned int vitesse, bool direction[8], const char &Type_Robot_Perso = objet::TYPES::ROBOT_PERSO) ;
+        robotPerso(unsigned int vitesse, const std::vector <bool> &direction, const char &Type_Robot_Perso = objet::TYPES::ROBOT_PERSO) ;
         virtual ~robotPerso() ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         virtual char typeObjet() const override ;
-        unsigned int get_vitesse() const;
-        bool* get_direction();
+        unsigned int get_vitesse() const ;
+        bool get_direction(int i) ;
 
     private :
 
@@ -25,7 +27,7 @@ class robotPerso : public robot
             Directions dans lesquels peut se déplacer un robot
             Verticalement (1ère case) puis dans le sens des aiguilles d'une montre
         */
-        bool d_direction[8] ;
+        std::vector <bool> d_direction ;
 
         bool bonneDirection(int dx, int dy) const ;
 };

@@ -1,4 +1,5 @@
 #include "joueurBase.h"
+
 #include <algorithm>
 
 joueurBase::joueurBase(const char &Type_Joueur_Base) : d_type{Type_Joueur_Base}
