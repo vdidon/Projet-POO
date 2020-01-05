@@ -86,7 +86,7 @@ unsigned int robotPerso::get_vitesse() const
 	return d_vitesse ;
 }
 
-bool robotPerso::get_direction(int i)
+bool robotPerso::get_direction(int i) const
 {
 	return d_direction[i] ;
 }
