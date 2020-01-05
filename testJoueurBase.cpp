@@ -9,8 +9,7 @@ void leJoueurBasePeutEtreDeplacer(const joueurBase &jBase, int dx, int dy)
 
 TEST_CASE("Le deplacement du joueur de base est correct")
 {
-    char typeJoueur = objet::TYPES::JOUEUR_BASE ;
-    joueurBase jBase1{typeJoueur} ;
+    joueurBase jBase1{} ;
 
     SUBCASE("Le deplacement en diagonale est correct")
     {

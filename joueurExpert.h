@@ -7,13 +7,9 @@ class joueurExpert : public joueur
 {
     public :
 
-        joueurExpert(const char &Type_Joueur_Expert = objet::TYPES::JOUEUR_EXPERT) ;
+        joueurExpert() ;
         virtual bool PeutAllerEn(int dx, int dy) const override ;
         virtual char typeObjet() const override ;
-
-    private :
-
-        char d_type ;
 };
 
 #endif // JOUEUREXPERT_H

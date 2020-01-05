@@ -7,7 +7,7 @@ class CaseVide : public objet
 {
     public :
 
-        CaseVide(const char &Type_Case_Vide = objet::TYPES::VIDE) ;
+        CaseVide() ;
 
         /**
             Méthode pour savoir si l'objet peut être déplacer (virtuelle)

@@ -7,7 +7,7 @@ class mur : public objet
 {
     public :
 
-        mur(const char &Type_Mur = objet::TYPES::MUR) ;
+        mur() ;
 
         /**
             Méthode pour savoir si l'objet peut être déplacer (virtuelle)

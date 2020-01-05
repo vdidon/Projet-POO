@@ -2,9 +2,8 @@
 
 #include <cmath>
 
-robotAncien::robotAncien(const char &Type_Robot_Ancien)
+robotAncien::robotAncien()
 {
-    d_type = Type_Robot_Ancien ;
 }
 
 robotAncien::~robotAncien()
@@ -12,7 +11,7 @@ robotAncien::~robotAncien()
 
 char robotAncien::typeObjet() const
 {
-	return d_type ;
+	return objet::TYPES::ROBOT_ANCIEN;
 }
 
 bool robotAncien::PeutAllerEn(int dx, int dy) const

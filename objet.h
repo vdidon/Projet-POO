@@ -37,7 +37,6 @@ class objet
                 static constexpr char VIDE = '.' ;
         };
 
-        char d_type ;
 };
 
 #endif // OBJET_H

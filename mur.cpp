@@ -1,8 +1,8 @@
 #include "mur.h"
 
-mur::mur(const char &Type_Mur)
+mur::mur()
 {
-    d_type = Type_Mur ;
+
 }
 
 /**
@@ -15,5 +15,5 @@ bool mur::PeutAllerEn(int x, int y) const
 
 char mur::typeObjet() const
 {
-    return d_type ;
+    return objet::TYPES::MUR;
 }
