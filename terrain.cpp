@@ -46,47 +46,45 @@ int terrain::largeur() const
 
 void terrain::ChangerHauteur(int x)
 {
-	int ancienneHauteur = hauteur();
-	if(x<ancienneHauteur)  // supprimer les objets qui ne sont plus dans le tableau
+	int ancienneHauteur = hauteur() ;
+	if(x < ancienneHauteur)  // Supprimer les objets qui ne sont plus dans le tableau
 	{
-		for (int i = x; i < ancienneHauteur; ++i) {
-			for (int j = 0; j < largeur(); ++j) {
-				delete d_tableau[i][j];
+		for (int i = x ; i < ancienneHauteur ; i++)
+        {
+			for (int j = 0 ; j < largeur() ; j++)
+			{
+				delete d_tableau[i][j] ;
 			}
 		}
 	}
-	d_tableau.resize(x,std::vector <objet*>(largeur(),new CaseVide())) ; // Rajouter des CaseVide dans les cases ajouter
-
-	// C'est peut-être plus clair comme ça, a toi de voir
-	/*if(hauteur()>ancienneHauteur)  // Rajouter des CaseVide dans les cases ajouter
+	if(hauteur() > ancienneHauteur)  // On rajoute des cases vides dans les cases supplémentaires
 	{
-		for (int i = ancienneHauteur; i < hauteur(); ++i) {
-			for (int j = 0; j < largeur(); ++j) {
-				d_tableau[i][j] = new CaseVide();
+		for(int i = ancienneHauteur ; i < hauteur() ; i++)
+        {
+			for(int j = 0 ; j < largeur() ; j++)
+			{
+				d_tableau[i][j] = new CaseVide() ;
 			}
 		}
-	}*/
+	}
 }
 
 void terrain::ChangerLargeur(int y)
 {
-	for(int i = 0 ; i < hauteur() ; ++i)
+	for(int i = 0 ; i < hauteur() ; i++)
 	{
-		int ancienneLargeur = largeur();
-		if(y<ancienneLargeur) // supprimer les objets qui ne sont plus dans le tableau
+		int ancienneLargeur = largeur() ;
+		if(y < ancienneLargeur) // Supprimer les objets qui ne sont plus dans le tableau
 		{
-			for (int j = y; j < ancienneLargeur; ++j)
+			for (int j = y ; j < ancienneLargeur ; j++)
 			{
-				delete d_tableau[i][j];
+				delete d_tableau[i][j] ;
 			}
 		}
-		d_tableau[i].resize(y,new CaseVide()) ; // Rajouter des CaseVide dans les cases ajouter
-
-		// C'est peut-être plus clair comme ça, a toi de voir
-		/*if (largeur()>ancienneLargeur) // Rajouter des CaseVide dans les cases ajouter
+		if(largeur() > ancienneLargeur) // On rajoute des cases vides dans les cases supplémentaires
 		{
-			d_tableau[i][ancienneLargeur]=new CaseVide[y-ancienneLargeur];
-		}*/
+			d_tableau[i][ancienneLargeur]= new CaseVide[y - ancienneLargeur] ;
+		}
 	}
 }
 
