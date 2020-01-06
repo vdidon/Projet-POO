@@ -132,19 +132,16 @@ void jeu::lancerJeu()
 								if (objetRobot->PeutAllerEn(i + 1, j + 1))
 								{
 									partieFinie = verificationDeplacement(i, j, i + 1, j + 1);
-									//d_terrain.deplacerObjet(i, j, i + 1, j + 1) ;
 								}
 								else
 								{
 									if (x - i < y - j)
 									{
 										partieFinie = verificationDeplacement(i, j, i + 1, j);
-										//d_terrain.deplacerObjet(i, j, i + 1, j) ;
 									}
 									else
 									{
 										partieFinie = verificationDeplacement(i, j, i, j + 1);
-										//d_terrain.deplacerObjet(i, j, i, j + 1) ;
 									}
 								}
 							}
@@ -153,26 +150,22 @@ void jeu::lancerJeu()
 								if (objetRobot->PeutAllerEn(i + 1, j - 1))
 								{
 									partieFinie = verificationDeplacement(i, j, i + 1, j - 1);
-									//d_terrain.deplacerObjet(i, j, i + 1, j - 1) ;
 								}
 								else
 								{
 									if (x - i < y - j)
 									{
 										partieFinie = verificationDeplacement(i, j, i + 1, j);
-										//d_terrain.deplacerObjet(i, j, i + 1, j) ;
 									}
 									else
 									{
 										partieFinie = verificationDeplacement(i, j, i, j - 1);
-										//d_terrain.deplacerObjet(i, j, i, j - 1) ;
 									}
 								}
 							}
 							else
 							{
 								partieFinie = verificationDeplacement(i, j, i + 1, j);
-								//d_terrain.deplacerObjet(i, j, i + 1, j) ;
 							}
 						}
 						else if (i > joueurX)
@@ -182,19 +175,16 @@ void jeu::lancerJeu()
 								if (objetRobot->PeutAllerEn(i - 1, j + 1))
 								{
 									partieFinie = verificationDeplacement(i, j, i - 1, j + 1);
-									//d_terrain.deplacerObjet(i, j, i - 1, j + 1) ;
 								}
 								else
 								{
 									if (x - i < y - j)
 									{
 										partieFinie = verificationDeplacement(i, j, i - 1, j);
-										//d_terrain.deplacerObjet(i, j, i - 1, j) ;
 									}
 									else
 									{
 										partieFinie = verificationDeplacement(i, j, i, j + 1);
-										//d_terrain.deplacerObjet(i, j, i, j + 1) ;
 									}
 								}
 							}
@@ -203,26 +193,22 @@ void jeu::lancerJeu()
 								if (objetRobot->PeutAllerEn(i - 1, j - 1))
 								{
 									partieFinie = verificationDeplacement(i, j, i - 1, j - 1);
-									//d_terrain.deplacerObjet(i, j, i - 1, j - 1) ;
 								}
 								else
 								{
 									if (x - i < y - j)
 									{
 										partieFinie = verificationDeplacement(i, j, i - 1, j);
-										//d_terrain.deplacerObjet(i, j, i - 1, j) ;
 									}
 									else
 									{
 										partieFinie = verificationDeplacement(i, j, i, j - 1);
-										//d_terrain.deplacerObjet(i, j, i, j - 1) ;
 									}
 								}
 							}
 							else
 							{
 								partieFinie = verificationDeplacement(i, j, i - 1, j);
-								//d_terrain.deplacerObjet(i, j, i - 1, j) ;
 							}
 						}
 						else
@@ -230,12 +216,10 @@ void jeu::lancerJeu()
 							if (j < joueurY)
 							{
 								partieFinie = verificationDeplacement(i, j, i, j + 1);
-								//d_terrain.deplacerObjet(i, j, i, j + 1) ;
 							}
 							else
 							{
 								partieFinie = verificationDeplacement(i, j, i, j - 1);
-								//d_terrain.deplacerObjet(i, j, i, j - 1) ;
 							}
 						}
 					}
@@ -415,13 +399,11 @@ void jeu::customiserTerrain()
 					cout << "Indiquer le type de l'objet souhaite :";
 					cin >> objet;
 				} while (d_terrain.CaractereInvalide(objet));
-				//d_terrain.ChangerTypeObjet(x, y, objet) ;
-				d_terrain.AjouterObjet(y, x, objet); // Pas plutôt X, y, objet ?
+				d_terrain.AjouterObjet(x, y, objet);
 			}
 			else
 			{
-				//d_terrain.ChangerTypeObjet(x, y, objet::TYPES::VIDE) ;
-				d_terrain.AjouterObjet(y, x, objet::TYPES::VIDE); // Pas plutôt X, y, objet ?
+				d_terrain.AjouterObjet(y, x, objet::TYPES::VIDE);
 				cout << "Objet en case de coordonnees (" << x << ',' << y << ") a ete supprime !" << endl;
 			}
 		}
