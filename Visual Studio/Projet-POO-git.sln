@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Jeu_des_robots", "Jeu_des_robots.vcxproj", "{0DEE26A9-0BCA-430F-9EAA-BDAC858F87E3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Jeu_des_robots", "Jeu_des_robots\Jeu_des_robots.vcxproj", "{0DEE26A9-0BCA-430F-9EAA-BDAC858F87E3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Doctest", "Doctest.vcxproj", "{7187394A-6FD2-4112-ADB0-891E26688ECB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Doctest", "Doctest\Doctest.vcxproj", "{7187394A-6FD2-4112-ADB0-891E26688ECB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

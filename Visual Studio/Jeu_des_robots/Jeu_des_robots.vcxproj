@@ -18,36 +18,68 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\CaseVide.cpp" />
+    <ClCompile Include="..\..\debris.cpp" />
+    <ClCompile Include="..\..\jeu.cpp" />
+    <ClCompile Include="..\..\joueur.cpp" />
+    <ClCompile Include="..\..\joueurBase.cpp" />
+    <ClCompile Include="..\..\joueurExpert.cpp" />
+    <ClCompile Include="..\..\main.cpp" />
+    <ClCompile Include="..\..\mur.cpp" />
+    <ClCompile Include="..\..\objet.cpp" />
+    <ClCompile Include="..\..\robot.cpp" />
+    <ClCompile Include="..\..\robotAncien.cpp" />
+    <ClCompile Include="..\..\robotNouveau.cpp" />
+    <ClCompile Include="..\..\robotPerso.cpp" />
+    <ClCompile Include="..\..\terrain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\CaseVide.h" />
+    <ClInclude Include="..\..\debris.h" />
+    <ClInclude Include="..\..\doctest.h" />
+    <ClInclude Include="..\..\jeu.h" />
+    <ClInclude Include="..\..\joueur.h" />
+    <ClInclude Include="..\..\joueurBase.h" />
+    <ClInclude Include="..\..\joueurExpert.h" />
+    <ClInclude Include="..\..\mur.h" />
+    <ClInclude Include="..\..\objet.h" />
+    <ClInclude Include="..\..\robot.h" />
+    <ClInclude Include="..\..\robotAncien.h" />
+    <ClInclude Include="..\..\robotNouveau.h" />
+    <ClInclude Include="..\..\robotPerso.h" />
+    <ClInclude Include="..\..\terrain.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{7187394A-6FD2-4112-ADB0-891E26688ECB}</ProjectGuid>
-    <RootNamespace>Doctest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{0DEE26A9-0BCA-430F-9EAA-BDAC858F87E3}</ProjectGuid>
+    <RootNamespace>Jeudesrobots</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -123,46 +155,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="CaseVide.h" />
-    <ClInclude Include="debris.h" />
-    <ClInclude Include="doctest.h" />
-    <ClInclude Include="jeu.h" />
-    <ClInclude Include="joueur.h" />
-    <ClInclude Include="joueurBase.h" />
-    <ClInclude Include="joueurExpert.h" />
-    <ClInclude Include="mur.h" />
-    <ClInclude Include="objet.h" />
-    <ClInclude Include="robot.h" />
-    <ClInclude Include="robotAncien.h" />
-    <ClInclude Include="robotNouveau.h" />
-    <ClInclude Include="robotPerso.h" />
-    <ClInclude Include="terrain.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CaseVide.cpp" />
-    <ClCompile Include="debris.cpp" />
-    <ClCompile Include="jeu.cpp" />
-    <ClCompile Include="joueur.cpp" />
-    <ClCompile Include="joueurBase.cpp" />
-    <ClCompile Include="joueurExpert.cpp" />
-    <ClCompile Include="mainTest.cpp" />
-    <ClCompile Include="mur.cpp" />
-    <ClCompile Include="objet.cpp" />
-    <ClCompile Include="robot.cpp" />
-    <ClCompile Include="robotAncien.cpp" />
-    <ClCompile Include="robotNouveau.cpp" />
-    <ClCompile Include="robotPerso.cpp" />
-    <ClCompile Include="terrain.cpp" />
-    <ClCompile Include="testDebris.cpp" />
-    <ClCompile Include="testJoueurBase.cpp" />
-    <ClCompile Include="testJoueurExpert.cpp" />
-    <ClCompile Include="testMur.cpp" />
-    <ClCompile Include="TestRobotAncien.cpp" />
-    <ClCompile Include="TestRobotNouveau.cpp" />
-    <ClCompile Include="TestRobotPerso.cpp" />
-    <ClCompile Include="TestTerrain.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
