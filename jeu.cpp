@@ -8,7 +8,7 @@ void jeu::run()
 	int choix = INT_MAX;
 	do
 	{
-		cout << "Menu : (Entrer le numéro correspondant à l'action que vous voulez effectuer) " << endl;
+		cout << "Menu : (Entrer le numero correspondant a l'action que vous voulez effectuer) " << endl;
 		cout << "1 --> Lancer le jeu." << endl;
 		cout << "2 --> Configuration." << endl;
 		cout << "0 --> Quitter" << endl;
@@ -45,7 +45,7 @@ bool jeu::verificationDeplacement(int x1, int y1, int x2, int y2)
 		//Supprime les deux objets
 		d_terrain.AjouterObjet(x1, y1, objet::TYPES::VIDE);
 		d_terrain.AjouterObjet(x2, y2, objet::TYPES::VIDE);
-		//Cree un debris à l'emplacement du deuxieme objet
+		//Cree un debris a l'emplacement du deuxieme objet
 		d_terrain.AjouterObjet(x2, y2, objet::TYPES::DEBRIS);
 	}
 	else
@@ -78,7 +78,7 @@ void jeu::lancerJeu()
 	}
 	if (joueurPresent < 1 || joueurPresent > 1 || auMoinsUnRobot == false)
 	{
-		cout << "ERREUR : Vérifier que les conditions suivantes soient remplies :" << endl;
+		cout << "ERREUR : Verifier que les conditions suivantes soient remplies :" << endl;
 		cout << "- Il ne doit y avoir qu'un seul objet joueur dans le terrain" << endl;
 		cout << "- Il doit y avoir au moins un objet robot dans le terrain" << endl;
 		cout << "Retour au menu principal" << endl;
@@ -92,16 +92,16 @@ void jeu::lancerJeu()
 		bool accidentDuJoueur = false;
 		char typeJoueur = d_terrain.typeCase(joueurX, joueurY);
 		joueur* objetJoueur = dynamic_cast<joueur*>(d_terrain.Case(joueurX, joueurY));
+		int x, y;
 		while (partieFinie == false)
 		{
 			d_terrain.AffichageTerrain();
 			cout << endl;
 
-			int x, y;
 			int nbRobotsRestant = 0;
-			cout << "Entrer l'incrémentation des coordonnées du joueur en x : ";
+			cout << "Entrer l'incrementation des coordonnees du joueur en x : ";
 			cin >> x;
-			cout << "Entrer l'incrémentation des coordonnées du joueur en y : ";
+			cout << "Entrer l'incrementation des coordonnees du joueur en y : ";
 			cin >> y;
 			if (objetJoueur->PeutAllerEn(x, y))
 			{
@@ -263,7 +263,7 @@ void jeu::lancerJeu()
 			d_terrain.AffichageTerrain();
 			cout << "PERDU :(" << endl;
 			cout << "Le joueur aux coordonnees (" << joueurX << ',' << joueurY << ") est entre dans";
-			cout << "l'objet de type [" << d_terrain.typeCase(joueurX + x, joueurY + y) << "] aux coordonnées (" << joueurX + x << ',' << joueurY + y << ")." << endl;
+			cout << "l'objet de type [" << d_terrain.typeCase(joueurX + x, joueurY + y) << "] aux coordonnees (" << joueurX + x << ',' << joueurY + y << ")." << endl;
 			cout << "Retour au menu principal ..." << endl;
 			cout << endl;
 		}
@@ -338,7 +338,8 @@ void jeu::customiserTerrain()
 		cout << "Que voulez-vous faire : " << endl;
 		cout << "1 --> Modifier la taille du tableau" << endl;
 		cout << "2 --> Modifier une case du terrain" << endl;
-		cout << "0 --> Revenir au menu précédent" << endl;
+		cout << "0 --> Revenir au menu precedent" << endl;
+		cin >> choix;
 	} while (choix < 0 || choix > 2);
 	switch (choix)
 	{
@@ -370,7 +371,7 @@ void jeu::customiserTerrain()
 			int largeur = 0;
 			do
 			{
-				cout << "Entrer la largeur souhaitée : ";
+				cout << "Entrer la largeur souhaitee : ";
 				cin >> largeur;
 			} while (largeur < 1);
 			d_terrain.ChangerLargeur(largeur);
@@ -400,7 +401,7 @@ void jeu::customiserTerrain()
 			int choix2 = 0;
 			do
 			{
-				cout << "Case occupé par un objet" << endl;
+				cout << "Case occupe par un objet" << endl;
 				cout << "Souhaitez-vous le modifier ou le supprimer ?" << endl;
 				cout << "1 --> Modifier le type de l'objet" << endl;
 				cout << "2 --> Supprimer l'objet" << endl;
