@@ -41,6 +41,16 @@ class jeu
         */
         void customiserTerrain() ;
 
+        /**
+            Permet de vérifier s'il y a déplacement ou destruction d'un objet
+            @param x1 - Coordonnées x de départ de l'objet
+            @param y1 - Coordonnées y de départ de l'objet
+            @param x2 - Coordonnées x d'arrivée de l'objet
+            @param y2 - Coordonnées y d'arrivée de l'objet
+            @return true si le robot ecrase le joueur
+        */
+        bool verificationDeplacement(int x1, int y1, int x2, int y2);
+
         terrain d_terrain ;
 };
 
